@@ -1,0 +1,100 @@
+---
+import Xampp from './icons/Xampp.astro'
+import Visualstudio from './icons/Visualstudio.astro'
+import GithubIcon from "../components/icons/Github.astro";
+import SocialPill from "../components/SocialPill.astro";
+import BoostrapIcon from "../components/icons/Boostrap.astro"
+import Astra from "../components/icons/Asap.astro"
+import SqlIcon from "../components/icons/Sql.astro"
+const TAGS = {
+    Xampp: {
+        name: "Xampp",
+        class: "bg-black text-white",
+        icon: Xampp,      
+    },
+
+    Visualstudio: {
+        name: "Visual Basic",
+        class: "bg-[#003159] text-white",
+        icon: Visualstudio,
+    },
+    
+    Boostrap: {
+        name: "Boostrap",
+        class: "bg-white text-black",
+        icon: BoostrapIcon,
+    },
+
+ Astra:
+ {
+    name: "ASP.net",
+    class: "bg-[#6601AF] text-white",
+    icon: Astra,
+ },
+
+ Sql:
+{
+    name: "SQL",
+    class:"bg-black text-white",
+    icon: SqlIcon,
+},
+
+
+};
+
+const PROJECTS = [
+    {
+        title: "VentaGaming",
+        description:
+            "This project is about how a vendor can create a client with a personal ID to sell items from a company that specializes in gaming products. You can also export to Excel to view the data. I use Visual Basic and MySQL with XAMPP, which is a cloud database..",
+
+        github: "https://github.com/Puppywill/Ventagaming",
+        image: "/proyects/venta.webp",
+        tags: [TAGS.Xampp,TAGS.Visualstudio],
+        
+    },
+
+    {
+        title: "Chill's Restaurant",
+        description:
+            "A collaborative project to create an attractive and dynamic restaurant website, utilizing the ASP.NET framework and a Microsoft SQL Server database.",
+
+        github: "https://github.com/Puppywill/ChillsRestaurant",
+        image: "/proyects/Chills.webp",
+        tags: [TAGS.Boostrap,TAGS.Astra,TAGS.Sql],
+    },
+
+];
+---
+
+{
+    PROJECTS.map(({ image, title, description, tags,github }) => (
+        <article class="mb-20">
+            <h3 class="text-2xl font-semibold text-violet-400 ">{title}</h3>
+            <p class="text-lg mb-4 text-pretty">{description}</p>
+            <ul class="flex gap-x-2 flex-row mb-4">
+                {tags.map((tag) => (
+                    <li>
+
+                        <span class={`flex gap-x-2 rounded-full text-xs   ${tag.class} py-1 px-2`}>
+                            
+                        <tag.icon class="size-4"/>
+                    {tag.name}
+                </span>
+                    </li>
+                ))}
+            </ul>
+            <img
+                class="rounded shadow-2xl shadow-white/10 mb-3"
+                src={image}
+                alt={`Screenshot the proyect ${image}`}
+            />
+<SocialPill href={github}>
+					<GithubIcon class="size-4 lg:size-6" />
+					GetCode
+				</SocialPill>
+
+            </article>
+))
+}            
+

@@ -1,0 +1,32 @@
+---
+import ExperienceItem from "./ExperienceItem.astro";
+
+const EXPERIENCIE = [
+   
+    {
+        date: "August 2020- May 2024",
+        title: "Bachelor Computer Science",
+        description: "University Interamericana Bayamon Puerto Rico",
+        description2: "",
+    },
+
+    {
+        date: "March 2024 - April 2024",
+        title: "Help Desk Intern",
+        description: "Plavica Auto Glass Center:",
+        description2:
+            "I worked at Plavica managing inventory in Visual Basic with Excel. I issued orders; for example, if the employee confirmed the order, a button was provided for it to be transferred. If the order is in the warehouse, it turns green, indicating that it is ready, but if it is red, it means there is no inventory or the order was not issued.",
+    },
+   
+];
+---
+
+<ol class="relative border-s border-gray-200 ml-3">
+    {
+        EXPERIENCIE.map((experience) => (
+            <li class="mb-10 ms-4">
+                <ExperienceItem {...experience} />
+            </li>
+        ))
+    }
+</ol>
