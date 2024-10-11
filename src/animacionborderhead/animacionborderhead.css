@@ -1,0 +1,17 @@
+@keyframes border-animation {
+   
+   
+    75% {
+      border-color: #9900ff; /* Azul */
+    }
+    100% {
+      border-color: #ffffff; /* Vuelve a blanco */
+    }
+  }
+  
+  /* Esta clase aplica la animación al borde */
+  .animate-border-animation {
+    animation: border-animation 4s infinite; /* Duración de 4 segundos, repite infinitamente */
+    transition: border-color 0.5s ease; /* Suaviza el cambio de color del borde */
+  }
+  

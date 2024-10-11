@@ -1,3 +1,7 @@
+---
+import '/src/animacionborderhead/animacionborderhead.css'
+---
+
 <header
   class="flex justify-center items-center
   mx-auto
@@ -6,17 +10,23 @@
    w-full xl:w-[1120px]
    z-10"
 >
+
+
   <nav
-    class="border border-white rounded-full
+    class="
+    relative flex overflow-hidden rounded-full p-[1px]
+    border border-white rounded-full
   px-3 py-1
   flex flex-row items-center
   gap-x-10
   bg-black-900 dark:bg-black/50
-  backdrop-blur-2xl"
+  backdrop-blur-2xl
+ animate-border-animation"
   >
+ 
     <a
       href="/#top"
-      class="hover:bg-white/10 rounded-full px10 transition hover:text-violet-500"
+      class="hover:bg-white/10 rounded-full px10 transition hover:text-violet-500  "
       >Home</a
     >
     <a href="/#about" 
@@ -31,5 +41,11 @@
       href="mailto:williamarosado@gmail.com"
       class="hover:bg-white/10 rounded-full px10 transition hover:text-violet-500">Contact</a
     >
+
+
+    
   </nav>
 </header>
+
+
+
