@@ -25,9 +25,8 @@ const { description, title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	
-	<body>
-		<div class="background-container"></div>
-			
+	<body style="background-color:#303133;">
+		
 			
 			<Header />
 			<slot />
@@ -45,7 +44,7 @@ const { description, title } = Astro.props;
 		body {
 			display: flex;
 			flex-direction: column;
-          		
+          	
             background-size: 100%;
 			min-height: 100vh;
 			
