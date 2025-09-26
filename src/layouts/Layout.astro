@@ -1,13 +1,11 @@
 ---
 import "@fontsource-variable/onest";
 import Header from "../components/Header.astro";
-
 import Footer from "../components/Footer.astro";
 
-
 interface Props {
-	title: string;
-	description: string;
+  title: string;
+  description: string;
 }
 
 const { description, title } = Astro.props;
@@ -15,45 +13,113 @@ const { description, title } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/logo.svg" />
+<head>
+  <!-- Preload de fuentes -->
+  <link rel="preload" href="/fonts/onest-variable.woff2" as="font" type="font/woff2" crossorigin />
 
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	
-	<body style="background-color:#303133;">
-		
-			
-			<Header />
-			<slot />
-		<Footer />
-	</body>
+  <!-- Preload de tu foto -->
+  <link 
+    rel="preload" 
+    as="image" 
+    href="/proyects/profile.webp" 
+    imagesrcset="/proyects/profile.webp" 
+    imagesizes="128px" 
+    fetchpriority="high" 
+  />
 
-	<style is:global>
-		:root {
-			color-scheme: light dark;
-		}
-		html {
-			font-family: "Onest Variable", system-ui, sans-serif;
-			
-		}
-		body {
-			display: flex;
-			flex-direction: column;
-            background-size: 100%;
-			min-height: 100vh;
-			
-		}
-		@media (prefers-reduced-motion: reduce)
-		{
-			html
-			{
-				scroll-behavior: auto;
-			}
-		}
-	</style>
+  <!-- SEO básico -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="description" content={description} />
+  <meta name="theme-color" content="#1e1f23" />
+  <link rel="canonical" href="https://tudominio.com/" />
+
+  <!-- Título dinámico -->
+  <title>{title}</title>
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+
+  <!-- ICONOS -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" href="/logo.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tudominio.com/" />
+  <meta property="og:image" content="/og-image.png" />
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content="/og-image.png" />
+
+  <meta name="generator" content={Astro.generator} />
+</head>
+
+  <body>
+    <Header />
+    <slot />
+    <Footer />
+  </body>
+
+  <style is:global>
+    :root {
+      color-scheme: dark;
+    }
+
+    html {
+      font-family: "Onest Variable", system-ui, sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+
+      /* 🎨 Fondo con degradado */
+      background: linear-gradient(180deg, #2b2c30 0%, #1e1f29 50%, #141518 100%);
+      background-attachment: fixed;
+    }
+
+    /* 🔗 Hover en el header */
+    nav a {
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #a855f7;
+      text-shadow: 0 0 6px rgba(168, 85, 247, 0.7);
+    }
+
+    /* 📦 Tarjetas (Skills, Certifications, etc.) */
+    .card, .skill-card {
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.02);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover, .skill-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    }
+
+    /* 📱 Responsive */
+    @media (max-width: 768px) {
+      .skills-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
 </html>

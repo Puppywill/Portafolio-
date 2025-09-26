@@ -4,92 +4,106 @@ import Card from "../components/Card.astro";
 
 import LinkedInIcon from "../components/icons/Linked.astro";
 import GithubIcon from "../components/icons/Github.astro";
-import MailIcon from "../components/icons/Mail.astro"
-import DownloadIcon from "../components/icons/Download.astro"
+import MailIcon from "../components/icons/Mail.astro";
+import DownloadIcon from "../components/icons/Download.astro";
 import Briefcase from "../components/icons/Briefcase.astro";
-import CodeIcon from "../components/icons/Code.astro"
+import CodeIcon from "../components/icons/Code.astro";
 
 import SocialPill from "../components/SocialPill.astro";
 import Experience from "../components/Experience.astro";
 
 import SectionContainer from "../components/SectionContainer.astro";
 import Proyects from "../components/Proyects.astro";
+import EducationCards from "../components/EducationCards.astro";
+import Skills from "../components/Skills.astro";
 
-import Badge from "../components/Badge.astro"
+import Badge from "../components/Badge.astro";
 ---
 
-<Layout title = "Portafolio William A.Rosado Pérez- Developer and programmer"
-description="Hi am William A.Rosado Pérez.I'll always be available for contractions and learning">
-
-	<main class="px-4">
-		<SectionContainer  class="py-44 pb-32">
-			<img
-				class="rounded-full w-12 h-12 mb-4"
-				src="/proyects/profile.webp"
-				alt="midudev photo"
-			/>
-
-			<h1
-				class="text-white text-3xl  md:text-4xl lg:text-4xl font-bold flex items-center gap-x-4 pb:6 lg:pb-10"
-			>
-				Hi, I'm William A. Rosado Pérez
-				<a
-					href="http://www.linkedin.com/in/william-a-rosado-p%C3%A9rez"
-					target="_blank"
-					rel="noopener"
-					class="flex items-center justify-left pb-0"
-				>
-					<Badge></Badge>
-				</a>
-			</h1>
-
-			<h2 class="text-xl  text-white lg:text-2xl opacity=80 text-wrap max-w-[700px] pb-10">
-				Software Developer  from Puerto Rico with a Bachelor's degree in
-				Computer Science from the Inter American University of Puerto
-				Rico (2020-2024). I enjoy acquiring knowledge and learning more
-			</h2>
-
-			<nav class="flex gap-4 mt-8 flex-wrap ">
-					<SocialPill href="http://www.linkedin.com/in/william-a-rosado-p%C3%A9rez">
-						<LinkedInIcon class="size-4 lg:size-6" />
-						LinkedIn
-					</SocialPill>
-
-					<SocialPill href="https://github.com/Puppywill">
-					<GithubIcon class="size-4 lg:size-6" />
-					Github
-				</SocialPill>
-
-                <SocialPill href="mailto:williamarosado@gmail.com">
-				<MailIcon class="size-4 lg:size-6" />
-					Contact Me
-				</SocialPill>
-
-				<SocialPill   href="https://drive.google.com/file/d/1GoHs3MN2T44q22TnTVombXdwPCMVOpiN/view?usp=drive_link">
-				<DownloadIcon class="size-4 lg:size-6" />
-				Download CV
-			</SocialPill>
+<Layout
+  title="Portafolio · William A. Rosado Pérez — Developer and Programmer"
+  description="Hi, I'm William A. Rosado Pérez. I'm available for collaborations and always learning."
+>
+  <main class="px-4">
+    <SectionContainer class="py-44 pb-32">
+   <img
+  src="/proyects/profile.webp"
+  alt="William A. Rosado Pérez"
+  width="120"
+  height="120"
+  loading="eager"
+  decoding="async"
+  fetchpriority="high"
+  class="rounded-full mb-6"
+/>
 
 
+      <h1
+        class="text-white text-3xl md:text-4xl lg:text-4xl font-bold flex items-center gap-x-4 pb-6 lg:pb-10"
+      >
+        Hi, I'm William A. Rosado Pérez
+        <a
+          href="http://www.linkedin.com/in/william-a-rosado-p%C3%A9rez"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-start pb-0"
+        >
+          <Badge />
+        </a>
+      </h1>
 
-				</nav>		
-				</SectionContainer>
+      <h2 class="text-xl text-white lg:text-2xl opacity-80 text-wrap max-w-[700px] pb-10">
+        Software Developer from Puerto Rico with a Bachelor's degree in Computer
+        Science from the Inter American University of Puerto Rico (2020–2024). I
+        enjoy acquiring knowledge and learning more.
+      </h2>
 
-		<SectionContainer id="about">
-			<h2 class="text-3xl text-white font-semibold mb-6 flex gap-x-2 items-center">
-				<Briefcase class:list="size-7"/>
-				Experience and Educacion
-			</h2>
-			<Experience />
-		</SectionContainer>
+      <nav class="flex gap-4 mt-8 flex-wrap">
+        <SocialPill href="http://www.linkedin.com/in/william-a-rosado-p%C3%A9rez">
+          <LinkedInIcon class="size-4 lg:size-6" />
+          LinkedIn
+        </SocialPill>
 
-		<SectionContainer id="proyect">
-		<h3 class="text-3xl font-semibold mb-6 flex gap-x-2 items-center text-white">
-			<CodeIcon class:list="size-8 "/>
-			Proyects
-		</h3>
-		<Proyects />
-	</SectionContainer>
+        <SocialPill href="https://github.com/Puppywill">
+          <GithubIcon class="size-4 lg:size-6" />
+          Github
+        </SocialPill>
 
-	</main>
+        <SocialPill href="mailto:williamarosado@gmail.com">
+          <MailIcon class="size-4 lg:size-6" />
+          Contact Me
+        </SocialPill>
+
+        <SocialPill href="https://drive.google.com/drive/folders/1o0W2rm6Ti47oIkTNPIbGP92rGRYs-hsq?usp=sharing">
+          <DownloadIcon class="size-4 lg:size-6" />
+          Download CV
+        </SocialPill>
+      </nav>
+    </SectionContainer>
+
+    <SectionContainer id="about">
+      <h2 class="text-3xl text-white font-semibold mb-6 flex gap-x-2 items-center">
+        <Briefcase class:list="size-7" />
+        Experience and Education
+      </h2>
+      <Experience />
+    </SectionContainer>
+
+    <SectionContainer id="projects">
+      <h3 class="text-3xl font-semibold mb-6 flex gap-x-2 items-center text-white">
+        <CodeIcon class:list="size-8" />
+        Projects
+      </h3>
+      <Proyects />
+    </SectionContainer>
+
+    <!-- Como pediste: agregamos estas secciones al FINAL -->
+    <SectionContainer id="education">
+      <EducationCards />
+    </SectionContainer>
+
+    <SectionContainer id="skills">
+      <Skills />
+    </SectionContainer>
+  </main>
 </Layout>

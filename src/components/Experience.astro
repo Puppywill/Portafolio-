@@ -1,30 +1,47 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro";
 
+// Puedes dejarlo tal cual, o añadir más elementos.
+// Si quieres resaltar el actual, añade `current: true`.
 const EXPERIENCIE = [
-   
-    {
-        date: "August 2020- May 2024",
-        title: "Bachelor Computer Science",
-        description: "University Interamericana Bayamon Puerto Rico",
-        description2: "",
-    },
-
-    {
-        date: "March 2024 - April 2024",
-        title: "Help Desk Intern",
-        description: "Plavica Auto Glass Center:",
-        description2:
-            "I worked at Plavica managing inventory in Visual Basic with Excel. I issued orders; for example, if the employee confirmed the order, a button was provided for it to be transferred. If the order is in the warehouse, it turns green, indicating that it is ready, but if it is red, it means there is no inventory or the order was not issued.",
-    },
-   
+  {
+    date: "December 2024 – Present",
+    title: "Help Desk / Database Support",
+    description: "Solutions by Design (SBD) – Puerto Rico",
+    description2:
+      "Provided user support (HW/SW/Network), SQL queries and backups, and QA for institutional websites (events, news, galleries). Ensured spelling, formatting, and no duplicates, following PRITS documentation standards.",
+    current: true, // ⬅️ el actual (bolita más grande y morada)
+  },
+  {
+    date: "2022 – Present",
+    title: "Freelance Developer / Personal Projects",
+    description: "VentaGaming · ServiciosCamuy · LicitadoresProduction",
+    description2:
+      "Developed apps with (VB.NET)+MySQL and SQL Server; created WordPress/Elementor sites; built personal portfolio with Astro+Tailwind; deployments on Netlify and local XAMPP.",
+  },
+  {
+    date: "March 2024 – April 2024",
+    title: "Help Desk Intern",
+    description: "Plavica Auto Glass Center",
+    description2:
+      "Managed inventory with Visual Basic for Excel. Created/processed orders; if confirmed, a transfer button enabled moving stock. Color status: green = ready, red = out-of-stock or not issued.",
+  },
+  {
+    date: "August 2020 – May 2024",
+    title: "Bachelor Computer Science",
+    description: "University Interamericana Bayamon Puerto Rico",
+    description2: "",
+  },
 ];
 ---
 
+<!-- Timeline con línea vertical fija y bolita centrada por item -->
 <ol class="relative border-s border-gray-200 ml-3">
     {
         EXPERIENCIE.map((experience) => (
             <li class="mb-10 ms-4">
+
+                
                 <ExperienceItem {...experience} />
             </li>
         ))

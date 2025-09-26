@@ -1,0 +1,48 @@
+---
+const GROUPS = [
+  {
+    title: "Programming Languages",
+    items: ["Java", "JavaScript", "Python", "PHP", "SQL"],
+  },
+  {
+    title: "Front-End",
+    items: ["HTML", "CSS", "Astro", "Tailwind"],
+  },
+  {
+    title: "Back-End",
+    items: ["ASP.NET", "Flask (básico)"],
+  },
+  {
+    title: "Databases",
+    items: ["Microsoft SQL Server", "MySQL"],
+  },
+  {
+    title: "Tools",
+    items: ["Git", "GitHub", "Postman", "Linux"],
+  },
+  {
+    title: "IT / Help Desk",
+    items: ["Troubleshooting HW/SW/Red", "Ticketing", "Good Documentation"],
+  },
+];
+---
+
+<section class="px-4 md:px-8 py-12">
+  <h2 class="text-3xl font-bold text-white mb-8">Skills & Tools</h2>
+
+  <div class="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+    {GROUPS.map((group) => (
+      <div class="rounded-2xl p-6 bg-zinc-900/40 border border-white/10
+                  shadow-md hover:shadow-xl hover:border-purple-400/60
+                  hover:-translate-y-1 transition-all duration-300
+                  backdrop-blur-sm">
+        <h3 class="text-lg font-semibold text-purple-400 mb-3">{group.title}</h3>
+        <ul class="space-y-1">
+          {group.items.map((item) => (
+            <li class="text-gray-300 text-sm">• {item}</li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>
