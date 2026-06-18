@@ -1,54 +1,89 @@
-# Astro Starter Kit: Basics
+﻿# William Rosado Portfolio
 
-```sh
-npm create astro@latest -- --template basics
-```
+Language: [English](README.md) | [Español](README_ES.md)
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+Personal portfolio website built with Astro and Tailwind CSS to present my background, technical skills, IT Support experience, and featured software projects.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Overview
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+This portfolio highlights projects related to Help Desk, IT Support, database support, web development, and software development. It is designed with a dark visual style, responsive layout, and a clean project showcase for recruiters and technical reviewers.
 
-## 🚀 Project Structure
+## Technologies Used
 
-Inside of your Astro project, you'll see the following folders and files:
+- Astro
+- Tailwind CSS
+- JavaScript
+- HTML
+- CSS
+
+## Featured Projects
+
+### Help Desk Ticket System
+
+![Help Desk Ticket System](public/screenshots/admin-dashboard.png)
+
+Professional IT Support ticket management system with authentication, role-based access, SQL Server integration, user administration, notifications, forgot password workflow, and PDF/Excel reporting with real support data.
+
+Technologies used:
+
+- HTML
+- CSS
+- JavaScript
+- Node.js
+- Express
+- SQL Server
+
+GitHub: [https://github.com/Puppywill/helpdesk-ticket-system](https://github.com/Puppywill/helpdesk-ticket-system)
+
+## Project Structure
 
 ```text
 /
 ├── public/
-│   └── favicon.svg
+│   ├── proyects/
+│   └── screenshots/
 ├── src/
 │   ├── components/
-│   │   └── Card.astro
 │   ├── layouts/
-│   │   └── Layout.astro
 │   └── pages/
-│       └── index.astro
+├── astro.config.mjs
+├── tailwind.config.mjs
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Getting Started
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Install dependencies:
 
-Any static assets, like images, can be placed in the `public/` directory.
+```bash
+npm install
+```
 
-## 🧞 Commands
+Run the project locally:
 
-All commands are run from the root of the project, from a terminal:
+```bash
+npm run dev
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Build for production:
 
-## 👀 Want to learn more?
+```bash
+npm run build
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Preview the production build:
+
+```bash
+npm run preview
+```
+
+## Author
+
+William Rosado
+
+- B.S. Computer Science
+- IT Support Specialist
+- Database Support
+- Puerto Rico
+
+GitHub: [https://github.com/Puppywill](https://github.com/Puppywill)
