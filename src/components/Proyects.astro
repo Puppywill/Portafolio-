@@ -5,35 +5,45 @@ import GithubIcon from "../components/icons/Github.astro";
 import SocialPill from "../components/SocialPill.astro";
 import BoostrapIcon from "../components/icons/Boostrap.astro";
 import Astra from "../components/icons/Asap.astro";
-import SqlIcon from "../components/icons/Sql.astro";
-import CodeIcon from "../components/icons/Code.astro";
+import HtmlIcon from "./icons/Html.astro";
+import CssIcon from "./icons/Css.astro";
+import JavaScriptIcon from "./icons/JavaScript.astro";
+import NodeJsIcon from "./icons/NodeJs.astro";
+import ExpressIcon from "./icons/Express.astro";
+import SqlServerIcon from "./icons/SqlServer.astro";
+import PythonIcon from "./icons/Python.astro";
+import QtIcon from "./icons/Qt.astro";
+import FfmpegIcon from "./icons/Ffmpeg.astro";
+import OpenCvIcon from "./icons/OpenCv.astro";
+import NumpyIcon from "./icons/Numpy.astro";
+import NvidiaIcon from "./icons/Nvidia.astro";
 import "/src/animacionimg/animacionimg.css";
 
 const TAGS = {
   Html: {
     name: "HTML",
     class: "bg-orange-500/15 text-orange-200 ring-1 ring-orange-400/30",
-    icon: CodeIcon,
+    icon: HtmlIcon,
   },
   Css: {
     name: "CSS",
     class: "bg-sky-500/15 text-sky-200 ring-1 ring-sky-400/30",
-    icon: CodeIcon,
+    icon: CssIcon,
   },
   JavaScript: {
     name: "JavaScript",
     class: "bg-yellow-400/15 text-yellow-100 ring-1 ring-yellow-300/30",
-    icon: CodeIcon,
+    icon: JavaScriptIcon,
   },
   Node: {
     name: "Node.js",
     class: "bg-emerald-500/15 text-emerald-200 ring-1 ring-emerald-400/30",
-    icon: CodeIcon,
+    icon: NodeJsIcon,
   },
   Express: {
     name: "Express",
     class: "bg-zinc-500/20 text-zinc-100 ring-1 ring-zinc-300/20",
-    icon: CodeIcon,
+    icon: ExpressIcon,
   },
   Xampp: {
     name: "Xampp",
@@ -58,11 +68,51 @@ const TAGS = {
   Sql: {
     name: "SQL Server",
     class: "bg-cyan-500/15 text-cyan-100 ring-1 ring-cyan-300/30",
-    icon: SqlIcon,
+    icon: SqlServerIcon,
+  },
+  Python: {
+    name: "Python",
+    class: "bg-blue-500/15 text-blue-100 ring-1 ring-blue-300/30",
+    icon: PythonIcon,
+  },
+  PySide: {
+    name: "PySide6",
+    class: "bg-emerald-500/15 text-emerald-100 ring-1 ring-emerald-300/30",
+    icon: QtIcon,
+  },
+  FFmpeg: {
+    name: "FFmpeg",
+    class: "bg-lime-500/15 text-lime-100 ring-1 ring-lime-300/30",
+    icon: FfmpegIcon,
+  },
+  OpenCV: {
+    name: "OpenCV",
+    class: "bg-red-500/15 text-red-100 ring-1 ring-red-300/30",
+    icon: OpenCvIcon,
+  },
+  NumPy: {
+    name: "NumPy",
+    class: "bg-sky-500/15 text-sky-100 ring-1 ring-sky-300/30",
+    icon: NumpyIcon,
+  },
+  Nvenc: {
+    name: "NVIDIA NVENC",
+    class: "bg-green-500/15 text-green-100 ring-1 ring-green-300/30",
+    icon: NvidiaIcon,
   },
 };
 
 const PROJECTS = [
+  {
+    title: "Puppywill AI Clipper",
+    description:
+      "A Windows desktop application that analyzes long gaming and IRL stream recordings to automatically detect and rank highlight moments. It combines audio intensity, reactions, visual movement, and scene changes, then exports clean clips in vertical, horizontal, or square formats.",
+    github: "https://github.com/Puppywill/Puppywill-AI-Clipper",
+    image: "/screenshots/puppywill-ai-clipper-app.png",
+    imageType: "app",
+    tags: [TAGS.Python, TAGS.PySide, TAGS.FFmpeg, TAGS.OpenCV, TAGS.NumPy, TAGS.Nvenc],
+    featured: true,
+  },
   {
     title: "Help Desk Ticket System",
     description:
@@ -70,7 +120,6 @@ const PROJECTS = [
     github: "https://github.com/Puppywill/helpdesk-ticket-system",
     image: "/screenshots/admin-dashboard.png",
     tags: [TAGS.Html, TAGS.Css, TAGS.JavaScript, TAGS.Node, TAGS.Express, TAGS.Sql],
-    featured: true,
   },
   {
     title: "VentaGaming",
@@ -92,7 +141,7 @@ const PROJECTS = [
 ---
 
 <div class="grid gap-8">
-  {PROJECTS.map(({ image, title, description, tags, github, featured }) => (
+  {PROJECTS.map(({ image, imageType, title, description, tags, github, featured }) => (
     <article
       class={`group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-4 shadow-2xl shadow-black/20 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/35 hover:bg-white/[0.055] md:p-6 ${
         featured ? "ring-1 ring-cyan-300/25" : ""
@@ -130,7 +179,9 @@ const PROJECTS = [
           </div>
         </div>
 
-        <div class="relative w-full overflow-hidden rounded-xl border border-white/10 bg-black/20 shadow-2xl shadow-cyan-950/20 aspect-[16/9]">
+        <div class={`relative w-full overflow-hidden rounded-xl border border-white/10 bg-black/20 shadow-2xl shadow-cyan-950/20 ${
+          imageType === "app" ? "aspect-[1216/1012]" : "aspect-[16/9]"
+        }`}>
           <img
             src={image}
             alt={`Screenshot of the project ${title}`}
@@ -138,7 +189,9 @@ const PROJECTS = [
             decoding="async"
             fetchpriority="low"
             sizes="(min-width: 1024px) 760px, 100vw"
-            class="imagen-animada absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
+            class={`imagen-animada absolute inset-0 h-full w-full transition duration-500 group-hover:scale-[1.02] ${
+              imageType === "app" ? "object-contain" : "object-cover"
+            }`}
           />
         </div>
       </div>
