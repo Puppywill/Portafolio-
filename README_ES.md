@@ -18,6 +18,23 @@ Este portafolio destaca proyectos relacionados con Help Desk, IT Support, soport
 
 ## Proyectos Destacados
 
+### Puppywill AI Clipper
+
+![Puppywill AI Clipper](public/screenshots/puppywill-ai-clipper-app.png)
+
+Aplicación de escritorio para Windows que analiza grabaciones largas de streams de gaming e IRL para detectar y clasificar automáticamente los mejores momentos. Combina intensidad de audio, reacciones, movimiento visual y cambios de escena, y luego exporta clips limpios en formato vertical, horizontal o cuadrado.
+
+Tecnologías utilizadas:
+
+- Python
+- PySide6 / Qt
+- FFmpeg
+- OpenCV
+- NumPy
+- NVIDIA NVENC
+
+GitHub: [https://github.com/Puppywill/Puppywill-AI-Clipper](https://github.com/Puppywill/Puppywill-AI-Clipper)
+
 ### Help Desk Ticket System
 
 ![Help Desk Ticket System](public/screenshots/admin-dashboard.png)
@@ -34,6 +51,34 @@ Tecnologías utilizadas:
 - SQL Server
 
 GitHub: [https://github.com/Puppywill/helpdesk-ticket-system](https://github.com/Puppywill/helpdesk-ticket-system)
+
+### VentaGaming
+
+![VentaGaming](public/proyects/venta.webp)
+
+Proyecto de base de datos de escritorio para administrar clientes y registros de ventas de una empresa de productos gaming, con exportación a Excel mediante Visual Basic, MySQL y XAMPP.
+
+Tecnologías utilizadas:
+
+- Visual Basic
+- MySQL
+- XAMPP
+
+GitHub: [https://github.com/Puppywill/Ventagaming](https://github.com/Puppywill/Ventagaming)
+
+### Chill's Restaurant
+
+![Chill's Restaurant](public/proyects/Chills.webp)
+
+Sitio web colaborativo para un restaurante desarrollado con ASP.NET y Microsoft SQL Server, enfocado en ofrecer una experiencia web dinámica respaldada por contenido proveniente de una base de datos.
+
+Tecnologías utilizadas:
+
+- Bootstrap
+- ASP.NET
+- SQL Server
+
+GitHub: [https://github.com/Puppywill/ChillsRestaurant](https://github.com/Puppywill/ChillsRestaurant)
 
 ## Estructura del Proyecto
 
