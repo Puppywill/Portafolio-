@@ -1,200 +1,320 @@
-﻿---
+---
 import Xampp from "./icons/Xampp.astro";
 import Visualstudio from "./icons/Visualstudio.astro";
-import GithubIcon from "../components/icons/Github.astro";
-import SocialPill from "../components/SocialPill.astro";
-import BoostrapIcon from "../components/icons/Boostrap.astro";
-import Astra from "../components/icons/Asap.astro";
+import GithubIcon from "./icons/Github.astro";
+import BootstrapIcon from "./icons/Boostrap.astro";
+import AspNetIcon from "./icons/Asap.astro";
 import HtmlIcon from "./icons/Html.astro";
 import CssIcon from "./icons/Css.astro";
 import JavaScriptIcon from "./icons/JavaScript.astro";
 import NodeJsIcon from "./icons/NodeJs.astro";
 import ExpressIcon from "./icons/Express.astro";
 import SqlServerIcon from "./icons/SqlServer.astro";
+import DatabaseIcon from "./icons/Sql.astro";
 import PythonIcon from "./icons/Python.astro";
 import QtIcon from "./icons/Qt.astro";
 import FfmpegIcon from "./icons/Ffmpeg.astro";
 import OpenCvIcon from "./icons/OpenCv.astro";
 import NumpyIcon from "./icons/Numpy.astro";
 import NvidiaIcon from "./icons/Nvidia.astro";
-import "/src/animacionimg/animacionimg.css";
+import WindowsIcon from "./icons/Windows.astro";
+import ExternalLinkIcon from "./icons/ExternalLink.astro";
+import MaximizeIcon from "./icons/Maximize.astro";
+import CloseIcon from "./icons/Close.astro";
+import CheckIcon from "./icons/Check.astro";
+import StarIcon from "./icons/Star.astro";
+import SocialPill from "./SocialPill.astro";
 
 const TAGS = {
-  Html: {
-    name: "HTML",
-    class: "bg-orange-500/15 text-orange-200 ring-1 ring-orange-400/30",
-    icon: HtmlIcon,
-  },
-  Css: {
-    name: "CSS",
-    class: "bg-sky-500/15 text-sky-200 ring-1 ring-sky-400/30",
-    icon: CssIcon,
-  },
-  JavaScript: {
-    name: "JavaScript",
-    class: "bg-yellow-400/15 text-yellow-100 ring-1 ring-yellow-300/30",
-    icon: JavaScriptIcon,
-  },
-  Node: {
-    name: "Node.js",
-    class: "bg-emerald-500/15 text-emerald-200 ring-1 ring-emerald-400/30",
-    icon: NodeJsIcon,
-  },
-  Express: {
-    name: "Express",
-    class: "bg-zinc-500/20 text-zinc-100 ring-1 ring-zinc-300/20",
-    icon: ExpressIcon,
-  },
-  Xampp: {
-    name: "Xampp",
-    class: "bg-black text-white",
-    icon: Xampp,
-  },
-  Visualstudio: {
-    name: "Visual Basic",
-    class: "bg-[#003159] text-white",
-    icon: Visualstudio,
-  },
-  Boostrap: {
-    name: "Boostrap",
-    class: "bg-white text-black",
-    icon: BoostrapIcon,
-  },
-  Astra: {
-    name: "ASP.net",
-    class: "bg-[#6601AF] text-white",
-    icon: Astra,
-  },
-  Sql: {
-    name: "SQL Server",
-    class: "bg-cyan-500/15 text-cyan-100 ring-1 ring-cyan-300/30",
-    icon: SqlServerIcon,
-  },
-  Python: {
-    name: "Python",
-    class: "bg-blue-500/15 text-blue-100 ring-1 ring-blue-300/30",
-    icon: PythonIcon,
-  },
-  PySide: {
-    name: "PySide6",
-    class: "bg-emerald-500/15 text-emerald-100 ring-1 ring-emerald-300/30",
-    icon: QtIcon,
-  },
-  FFmpeg: {
-    name: "FFmpeg",
-    class: "bg-lime-500/15 text-lime-100 ring-1 ring-lime-300/30",
-    icon: FfmpegIcon,
-  },
-  OpenCV: {
-    name: "OpenCV",
-    class: "bg-red-500/15 text-red-100 ring-1 ring-red-300/30",
-    icon: OpenCvIcon,
-  },
-  NumPy: {
-    name: "NumPy",
-    class: "bg-sky-500/15 text-sky-100 ring-1 ring-sky-300/30",
-    icon: NumpyIcon,
-  },
-  Nvenc: {
-    name: "NVIDIA NVENC",
-    class: "bg-green-500/15 text-green-100 ring-1 ring-green-300/30",
-    icon: NvidiaIcon,
-  },
+  Html: { name: "HTML", class: "bg-orange-500/15 text-orange-200 ring-orange-400/30", icon: HtmlIcon },
+  Css: { name: "CSS", class: "bg-sky-500/15 text-sky-200 ring-sky-400/30", icon: CssIcon },
+  JavaScript: { name: "JavaScript", class: "bg-yellow-400/15 text-yellow-100 ring-yellow-300/30", icon: JavaScriptIcon },
+  Node: { name: "Node.js", class: "bg-emerald-500/15 text-emerald-200 ring-emerald-400/30", icon: NodeJsIcon },
+  Express: { name: "Express", class: "bg-zinc-500/20 text-zinc-100 ring-zinc-300/20", icon: ExpressIcon },
+  Xampp: { name: "XAMPP", class: "bg-orange-600/15 text-orange-100 ring-orange-400/25", icon: Xampp },
+  VisualBasic: { name: "Visual Basic", class: "bg-blue-600/20 text-blue-100 ring-blue-400/30", icon: Visualstudio },
+  MySql: { name: "MySQL", class: "bg-teal-500/15 text-teal-100 ring-teal-300/30", icon: DatabaseIcon },
+  Bootstrap: { name: "Bootstrap", class: "bg-violet-500/15 text-violet-100 ring-violet-300/30", icon: BootstrapIcon },
+  AspNet: { name: "ASP.NET", class: "bg-purple-600/20 text-purple-100 ring-purple-400/30", icon: AspNetIcon },
+  Sql: { name: "SQL Server", class: "bg-cyan-500/15 text-cyan-100 ring-cyan-300/30", icon: SqlServerIcon },
+  Python: { name: "Python", class: "bg-blue-500/15 text-blue-100 ring-blue-300/30", icon: PythonIcon },
+  PySide: { name: "PySide6", class: "bg-emerald-500/15 text-emerald-100 ring-emerald-300/30", icon: QtIcon },
+  FFmpeg: { name: "FFmpeg", class: "bg-lime-500/15 text-lime-100 ring-lime-300/30", icon: FfmpegIcon },
+  OpenCV: { name: "OpenCV", class: "bg-red-500/15 text-red-100 ring-red-300/30", icon: OpenCvIcon },
+  NumPy: { name: "NumPy", class: "bg-sky-500/15 text-sky-100 ring-sky-300/30", icon: NumpyIcon },
+  Nvenc: { name: "NVIDIA NVENC", class: "bg-green-500/15 text-green-100 ring-green-300/30", icon: NvidiaIcon },
 };
 
-const PROJECTS = [
+type Tag = (typeof TAGS)[keyof typeof TAGS];
+
+interface Project {
+  title: string;
+  category: string;
+  description: string;
+  github: string;
+  /** Optional live demo URL — a "Live Demo" button appears when set */
+  demo?: string;
+  /** Optional download URL (e.g. GitHub Releases) */
+  download?: string;
+  image: string;
+  width: number;
+  height: number;
+  tags: Tag[];
+  features?: string[];
+  featured?: boolean;
+}
+
+const PROJECTS: Project[] = [
   {
     title: "Puppywill AI Clipper",
+    category: "Windows Desktop App · Video Analysis",
     description:
       "A Windows desktop application that analyzes long gaming and IRL stream recordings to automatically detect and rank highlight moments. It combines audio intensity, reactions, visual movement, and scene changes, then exports clean clips in vertical, horizontal, or square formats.",
     github: "https://github.com/Puppywill/Puppywill-AI-Clipper",
-    image: "/screenshots/puppywill-ai-clipper-app.png",
-    imageType: "app",
+    download: "https://github.com/Puppywill/Puppywill-AI-Clipper/releases/latest",
+    image: "/screenshots/puppywill-ai-clipper-app.webp",
+    width: 1216,
+    height: 1012,
     tags: [TAGS.Python, TAGS.PySide, TAGS.FFmpeg, TAGS.OpenCV, TAGS.NumPy, TAGS.Nvenc],
+    features: [
+      "Ranks every moment with a 0–100 quality score and labels like Kill, Multikill, Best Play, and Reaction",
+      "GPU-accelerated decoding and export (NVDEC / NVENC) with automatic CPU fallback",
+      "Audio and video analyzed in parallel, with real progress, ETA, and cancel at any time",
+      "Preview and fine-tune each clip, then batch-export to 9:16, 16:9, and 1:1",
+      "Result caching and project save/load to resume work later",
+      "Windows installer with FFmpeg bundled · UI in English, Spanish, and Portuguese",
+    ],
     featured: true,
   },
   {
     title: "Help Desk Ticket System",
+    category: "Full-Stack Web App",
     description:
       "A professional IT Support ticket management system with authentication, role-based access, SQL Server integration, user administration, notifications, forgot password workflow, and PDF/Excel reporting with real support data.",
     github: "https://github.com/Puppywill/helpdesk-ticket-system",
-    image: "/screenshots/admin-dashboard.png",
+    image: "/screenshots/admin-dashboard.webp",
+    width: 1280,
+    height: 971,
     tags: [TAGS.Html, TAGS.Css, TAGS.JavaScript, TAGS.Node, TAGS.Express, TAGS.Sql],
   },
   {
     title: "VentaGaming",
+    category: "Desktop App · Database",
     description:
       "A desktop database project for managing customers and sales records for a gaming products company, including Excel export functionality using Visual Basic, MySQL, and XAMPP.",
     github: "https://github.com/Puppywill/Ventagaming",
     image: "/proyects/venta.webp",
-    tags: [TAGS.Xampp, TAGS.Visualstudio],
+    width: 960,
+    height: 720,
+    tags: [TAGS.VisualBasic, TAGS.MySql, TAGS.Xampp],
   },
   {
     title: "Chill's Restaurant",
+    category: "Web App · Team Project",
     description:
       "A collaborative restaurant website built with ASP.NET and Microsoft SQL Server, focused on presenting a dynamic web experience backed by database-driven content.",
     github: "https://github.com/Puppywill/ChillsRestaurant",
     image: "/proyects/Chills.webp",
-    tags: [TAGS.Boostrap, TAGS.Astra, TAGS.Sql],
+    width: 960,
+    height: 720,
+    tags: [TAGS.Bootstrap, TAGS.AspNet, TAGS.Sql],
   },
 ];
+
+const featured = PROJECTS.filter((p) => p.featured);
+const others = PROJECTS.filter((p) => !p.featured);
 ---
 
 <div class="grid gap-8">
-  {PROJECTS.map(({ image, imageType, title, description, tags, github, featured }) => (
-    <article
-      class={`group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-4 shadow-2xl shadow-black/20 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/35 hover:bg-white/[0.055] md:p-6 ${
-        featured ? "ring-1 ring-cyan-300/25" : ""
-      }`}
-    >
-      <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.14),transparent_36%)] opacity-0 transition duration-300 group-hover:opacity-100"></div>
+  {
+    featured.map((project) => (
+      <article
+        data-reveal
+        class="group relative overflow-hidden rounded-3xl border border-violet-400/30 bg-gradient-to-b from-violet-500/[0.09] to-white/[0.02] p-4 shadow-2xl shadow-violet-950/30 md:p-6"
+      >
+        <div
+          aria-hidden="true"
+          class="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-violet-500/20 blur-3xl"
+        />
 
-      <div class="grid gap-6 lg:grid-cols-[1.05fr_1.4fr] lg:items-center">
-        <div class="space-y-4">
-          {featured && (
-            <span class="inline-flex w-fit rounded-full border border-cyan-300/30 bg-cyan-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-100">
-              Featured Project
+        <button
+          type="button"
+          data-lightbox={project.image}
+          data-alt={`Screenshot of ${project.title}`}
+          aria-label={`Enlarge screenshot of ${project.title}`}
+          class="relative block w-full cursor-zoom-in overflow-hidden rounded-2xl border border-white/10 bg-black/30 shadow-xl shadow-black/40"
+        >
+          <img
+            src={project.image}
+            alt={`Screenshot of ${project.title}`}
+            width={project.width}
+            height={project.height}
+            loading="lazy"
+            decoding="async"
+            class="h-auto w-full transition duration-500 group-hover:scale-[1.015]"
+          />
+          <span class="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-black/70 px-3 py-1 text-xs text-white/90 backdrop-blur transition md:opacity-0 md:group-hover:opacity-100">
+            <MaximizeIcon class="size-3.5" /> View full size
+          </span>
+        </button>
+
+        <div class="relative mt-6 md:mt-8">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-violet-300/40 bg-violet-500/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-violet-100">
+              <StarIcon class="size-3.5" /> Featured Project
             </span>
+            <span class="text-sm text-white/60">{project.category}</span>
+          </div>
+
+          <h3 class="mt-3 bg-gradient-to-r from-white via-white to-violet-200 bg-clip-text text-3xl font-bold text-transparent md:text-4xl">
+            {project.title}
+          </h3>
+          <p class="mt-3 text-pretty text-base leading-7 text-white/80 md:text-lg">{project.description}</p>
+
+          {project.features && (
+            <ul class="mt-6 grid gap-3 md:grid-cols-2" aria-label="Key features">
+              {project.features.map((feature) => (
+                <li class="flex gap-x-3 rounded-xl border border-white/10 bg-black/20 p-3 text-sm leading-6 text-white/80">
+                  <span class="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-violet-500/20 text-violet-300">
+                    <CheckIcon class="size-3.5" />
+                  </span>
+                  {feature}
+                </li>
+              ))}
+            </ul>
           )}
 
-          <h3 class="text-2xl font-semibold text-white md:text-3xl">{title}</h3>
-          <p class="text-pretty text-base leading-7 text-white/78 md:text-lg">{description}</p>
-
-          <ul class="flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <li>
-                <span class={`inline-flex items-center gap-x-2 rounded-full px-3 py-1.5 text-xs font-semibold ${tag.class}`}>
-                  <tag.icon class="size-4" />
-                  {tag.name}
-                </span>
+          <ul class="mt-6 flex flex-wrap gap-2" aria-label="Technologies">
+            {project.tags.map((tag) => (
+              <li class={`inline-flex items-center gap-x-2 rounded-full px-3 py-1.5 text-xs font-semibold ring-1 ${tag.class}`}>
+                <tag.icon class="size-4" />
+                {tag.name}
               </li>
             ))}
           </ul>
 
-          <div class="pt-1">
-            <SocialPill href={github}>
-              <GithubIcon class="size-4 lg:size-6" />
-              GitHub
+          <div class="mt-6 flex flex-wrap gap-3">
+            {project.download && (
+              <SocialPill href={project.download} variant="primary">
+                <WindowsIcon class="size-4 md:size-5" />
+                Download for Windows
+              </SocialPill>
+            )}
+            <SocialPill href={project.github}>
+              <GithubIcon class="size-4 md:size-5" />
+              View Code
             </SocialPill>
+            {project.demo && (
+              <SocialPill href={project.demo}>
+                <ExternalLinkIcon class="size-4 md:size-5" />
+                Live Demo
+              </SocialPill>
+            )}
           </div>
         </div>
+      </article>
+    ))
+  }
 
-        <div class={`relative w-full overflow-hidden rounded-xl border border-white/10 bg-black/20 shadow-2xl shadow-cyan-950/20 ${
-          imageType === "app" ? "aspect-[1216/1012]" : "aspect-[16/9]"
-        }`}>
+  {
+    others.map((project) => (
+      <article
+        data-reveal
+        class="group grid gap-5 rounded-2xl border border-white/10 bg-white/[0.03] p-4 shadow-xl shadow-black/20 transition duration-300 hover:-translate-y-1 hover:border-violet-400/40 hover:bg-white/[0.05] md:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] md:items-center md:gap-6 md:p-5"
+      >
+        <button
+          type="button"
+          data-lightbox={project.image}
+          data-alt={`Screenshot of ${project.title}`}
+          aria-label={`Enlarge screenshot of ${project.title}`}
+          class="relative block aspect-[4/3] w-full cursor-zoom-in overflow-hidden rounded-xl border border-white/10 bg-black/30"
+        >
           <img
-            src={image}
-            alt={`Screenshot of the project ${title}`}
+            src={project.image}
+            alt={`Screenshot of ${project.title}`}
+            width={project.width}
+            height={project.height}
             loading="lazy"
             decoding="async"
-            fetchpriority="low"
-            sizes="(min-width: 1024px) 760px, 100vw"
-            class={`imagen-animada absolute inset-0 h-full w-full transition duration-500 group-hover:scale-[1.02] ${
-              imageType === "app" ? "object-contain" : "object-cover"
-            }`}
+            class="absolute inset-0 h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.04]"
           />
+        </button>
+
+        <div>
+          <p class="text-xs font-medium uppercase tracking-wider text-violet-300/90">{project.category}</p>
+          <h3 class="mt-1.5 text-2xl font-semibold text-white">{project.title}</h3>
+          <p class="mt-2 text-pretty text-[15px] leading-7 text-white/75">{project.description}</p>
+
+          <ul class="mt-4 flex flex-wrap gap-2" aria-label="Technologies">
+            {project.tags.map((tag) => (
+              <li class={`inline-flex items-center gap-x-1.5 rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ${tag.class}`}>
+                <tag.icon class="size-3.5" />
+                {tag.name}
+              </li>
+            ))}
+          </ul>
+
+          <div class="mt-5 flex flex-wrap gap-3">
+            <SocialPill href={project.github}>
+              <GithubIcon class="size-4 md:size-5" />
+              View Code
+            </SocialPill>
+            {project.demo && (
+              <SocialPill href={project.demo}>
+                <ExternalLinkIcon class="size-4 md:size-5" />
+                Live Demo
+              </SocialPill>
+            )}
+          </div>
         </div>
-      </div>
-    </article>
-  ))}
+      </article>
+    ))
+  }
 </div>
+
+<p class="mt-8 text-center text-sm text-white/60" data-reveal>
+  More work on
+  <a
+    href="https://github.com/Puppywill"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="font-medium text-violet-300 underline-offset-4 hover:text-violet-200 hover:underline">GitHub ↗</a
+  >
+</p>
+
+<dialog
+  id="lightbox"
+  aria-label="Project screenshot"
+  class="m-auto max-h-[92vh] w-[min(1200px,94vw)] overflow-visible bg-transparent p-0 backdrop:bg-black/80 backdrop:backdrop-blur-sm"
+>
+  <img id="lightbox-img" src="" alt="" class="max-h-[88vh] w-full rounded-xl border border-white/10 object-contain shadow-2xl" />
+  <button
+    type="button"
+    id="lightbox-close"
+    aria-label="Close"
+    class="absolute -top-3 right-0 grid size-10 -translate-y-full place-items-center rounded-full border border-white/15 bg-zinc-900 text-white hover:bg-violet-600 sm:-right-3 sm:translate-x-full sm:translate-y-0"
+  >
+    <CloseIcon class="size-5" />
+  </button>
+</dialog>
+
+<script>
+  const dialog = document.getElementById("lightbox") as HTMLDialogElement | null;
+  const img = document.getElementById("lightbox-img") as HTMLImageElement | null;
+
+  if (dialog && img && typeof dialog.showModal === "function") {
+    document.querySelectorAll<HTMLButtonElement>("[data-lightbox]").forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        img.src = trigger.dataset.lightbox ?? "";
+        img.alt = trigger.dataset.alt ?? "";
+        dialog.showModal();
+      });
+    });
+
+    document.getElementById("lightbox-close")?.addEventListener("click", () => dialog.close());
+    // Close when clicking the backdrop (outside the image)
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  }
+</script>

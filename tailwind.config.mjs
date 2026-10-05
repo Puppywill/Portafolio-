@@ -1,14 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-	darkMode: 'class', // Habilitar el modo oscuro basado en una clase
 	theme: {
-	  extend: {
-		textColor: {
-		  'default-white': 'white', // O puedes extender aquí si deseas
+		extend: {
+			fontFamily: {
+				sans: ['"Onest Variable"', 'system-ui', 'sans-serif'],
+			},
 		},
-	  },
 	},
 	plugins: [],
-  }
-  
+};

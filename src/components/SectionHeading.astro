@@ -1,0 +1,22 @@
+---
+interface Props {
+  eyebrow?: string;
+  subtitle?: string;
+  id?: string;
+}
+
+const { eyebrow, subtitle, id } = Astro.props;
+---
+
+<header class="mb-8 md:mb-10" data-reveal>
+  {eyebrow && (
+    <p class="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-violet-300/90">{eyebrow}</p>
+  )}
+  <h2 id={id} class="flex items-center gap-x-3 text-3xl font-bold text-white md:text-[2rem]">
+    <span class="grid size-10 shrink-0 place-items-center rounded-xl border border-violet-400/25 bg-violet-500/10 text-violet-300 [&>svg]:size-5">
+      <slot name="icon" />
+    </span>
+    <slot />
+  </h2>
+  {subtitle && <p class="mt-3 max-w-[60ch] text-pretty text-white/65">{subtitle}</p>}
+</header>

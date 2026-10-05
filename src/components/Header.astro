@@ -1,97 +1,109 @@
 ---
 import "/src/animacionborderhead/animacionborderhead.css";
+
+const LINKS = [
+  { label: "Home", target: "top", class: "hidden sm:inline-flex" },
+  { label: "Experience", target: "experience" },
+  { label: "Projects", target: "projects" },
+  { label: "Skills", target: "skills" },
+  { label: "Contact", target: "contact" },
+];
 ---
 
-<header class="sticky top-0 z-50 w-full bg-zinc-900/70 supports-[backdrop-filter]:bg-zinc-900/50 backdrop-blur">
-  <div class="mx-auto max-w-[1120px] px-4 py-5 flex justify-center items-center">
+<header
+  id="site-header"
+  class="sticky top-0 z-50 w-full transition-colors duration-300"
+>
+  <div class="mx-auto flex max-w-[1120px] items-center justify-center px-3 py-4 sm:px-4">
     <nav
-      class="relative flex items-center gap-8 overflow-hidden rounded-full border border-white/10
-             bg-black/40 px-3 py-1 backdrop-blur-2xl animate-border-animation">
-
-      <a
-        href="/#top"
-        data-target="top"
-        class="nav-link rounded-full px-4 py-1 text-sm font-medium transition hover:text-violet-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500/60">
-        Home
-      </a>
-
-      <!-- Pon esto al principio del <body> en layout -->
-<a href="#about" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3
-   focus:bg-violet-600 focus:text-white focus:rounded-md focus:px-3 focus:py-2">
-  Skip to content
-</a>
-
-
-      <a
-        href="/#projects"
-        data-target="projects"
-        class="nav-link rounded-full px-4 py-1 text-sm font-medium transition hover:text-violet-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500/60">
-        Projects
-      </a>
-
-      <a
-        href="mailto:williamarosado@gmail.com"
-        class="rounded-full px-4 py-1 text-sm font-medium transition hover:text-violet-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500/60">
-        Contact
-      </a>
+      aria-label="Main"
+      class="relative flex items-center gap-0.5 rounded-full border border-white/10 bg-black/40 p-1 shadow-lg shadow-black/20 backdrop-blur-2xl animate-border-animation sm:gap-1"
+    >
+      {
+        LINKS.map((link) => (
+          <a
+            href={`/#${link.target}`}
+            data-target={link.target}
+            class:list={[
+              "nav-link inline-flex rounded-full px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 sm:px-4 sm:text-sm",
+              link.class,
+            ]}
+          >
+            {link.label}
+          </a>
+        ))
+      }
     </nav>
   </div>
 </header>
 
 <style is:global>
-  html { scroll-behavior: smooth; }
-  section[id] { scroll-margin-top: 90px; }
+  #site-header.scrolled {
+    background: rgb(24 24 27 / 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
 
-  .nav-link { color: rgb(229 231 235 / 0.8); }
-  .nav-link.active { color: rgb(167 139 250); }
+  .nav-link {
+    color: rgb(229 231 235 / 0.75);
+  }
+
+  .nav-link:hover {
+    color: #fff;
+  }
+
+  .nav-link.active {
+    color: #fff;
+    background: rgb(139 92 246 / 0.22);
+    box-shadow: inset 0 0 0 1px rgb(167 139 250 / 0.35);
+  }
 </style>
 
-<script is:inline>
-  window.addEventListener('DOMContentLoaded', () => {
-    const links = Array.from(document.querySelectorAll('.nav-link[data-target]'));
-    const sections = links
-      .map(link => document.getElementById(link.dataset.target))
-      .filter(Boolean);
+<script>
+  const header = document.getElementById("site-header");
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>(".nav-link[data-target]"));
+  const sections = links
+    .map((link) => document.getElementById(link.dataset.target ?? ""))
+    .filter((el): el is HTMLElement => el !== null);
 
-    if (!links.length || !sections.length) return;
+  function setActive(id: string) {
+    links.forEach((link) => {
+      const isActive = link.dataset.target === id;
+      link.classList.toggle("active", isActive);
+      if (isActive) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
+  }
 
- // En tu setActive() del header
-function setActive(id) {
-  links.forEach(link => {
-    const isActive = link.dataset.target === id;
-    link.classList.toggle('active', isActive);
-    link.setAttribute('aria-current', isActive ? 'page' : 'false');
-  });
-}
+  let ticking = false;
 
-    function updateActive() {
-      const y = window.scrollY;
+  function update() {
+    ticking = false;
+    const y = window.scrollY;
+    header?.classList.toggle("scrolled", y > 8);
 
-      // 👇 Si está arriba del todo => Home activo
-      if (y < 150) {
-        setActive("top");
-        return;
-      }
+    if (y < 150) return setActive("top");
 
-      const center = y + window.innerHeight / 2;
-      let current = sections[0].id;
-
-      for (const sec of sections) {
-        const top = sec.offsetTop;
-        const bottom = top + sec.offsetHeight;
-        if (center >= top && center < bottom) {
-          current = sec.id;
-          break;
-        }
-      }
-
-      setActive(current);
+    // Bottom of the page: highlight the last section (Contact is short)
+    if (window.innerHeight + y >= document.documentElement.scrollHeight - 4) {
+      return setActive(sections[sections.length - 1]?.id ?? "top");
     }
 
-    updateActive();
-    const rafUpdate = () => requestAnimationFrame(updateActive);
-    window.addEventListener('scroll', rafUpdate, { passive: true });
-    window.addEventListener('resize', rafUpdate);
-    window.addEventListener('hashchange', updateActive);
-  });
+    const probe = y + window.innerHeight * 0.4;
+    let current = "top";
+    for (const sec of sections) {
+      if (sec.id !== "top" && sec.offsetTop <= probe) current = sec.id;
+    }
+    setActive(current);
+  }
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }
+
+  update();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
 </script>

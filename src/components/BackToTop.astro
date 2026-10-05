@@ -1,0 +1,32 @@
+---
+import ArrowUp from "./icons/ArrowUp.astro";
+---
+
+<a
+  href="#top"
+  id="back-to-top"
+  aria-label="Back to top"
+  class="fixed bottom-5 right-5 z-40 grid size-11 place-items-center rounded-full border border-white/10 bg-zinc-900/80 text-white shadow-lg shadow-black/30 backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:border-violet-400/60 hover:bg-violet-600/80 sm:bottom-8 sm:right-8"
+  data-hidden="true"
+>
+  <ArrowUp class="size-5" />
+</a>
+
+<style>
+  #back-to-top[data-hidden="true"] {
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  const button = document.getElementById("back-to-top");
+  if (button) {
+    const toggle = () => {
+      button.dataset.hidden = String(window.scrollY < 600);
+    };
+    toggle();
+    window.addEventListener("scroll", toggle, { passive: true });
+  }
+</script>
