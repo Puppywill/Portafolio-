@@ -1,47 +1,97 @@
 ---
+import SqlServerIcon from "./icons/SqlServer.astro";
+import DatabaseIcon from "./icons/Sql.astro";
+import { SKILL_ICONS } from "../data/skill-icons";
+import { getLang, type Localized } from "../i18n/ui";
+
+const lang = getLang(Astro.currentLocale);
+
+interface Skill {
+  label: Localized | string;
+  /** Key in SKILL_ICONS, or "sqlserver" / "database" for local icons */
+  icon?: string;
+}
+
 // Every item here is backed by the experience or projects shown on this page.
-const GROUPS = [
+// IT Support skills have no official logo, so those chips stay text-only.
+const GROUPS: { title: Localized; items: Skill[]; wide?: boolean }[] = [
   {
-    title: "Programming Languages",
-    items: ["Java", "JavaScript", "Python", "PHP", "SQL", "Visual Basic / VB.NET"],
-  },
-  {
-    title: "Front-End",
-    items: ["HTML", "CSS", "Astro", "Tailwind CSS", "Bootstrap", "WordPress / Elementor"],
-  },
-  {
-    title: "Back-End",
-    items: ["Node.js", "Express", "ASP.NET", "Flask (basic)"],
-  },
-  {
-    title: "Databases",
-    items: ["Microsoft SQL Server", "MySQL"],
-  },
-  {
-    title: "Desktop & Media",
-    items: ["PySide6 / Qt", "FFmpeg", "OpenCV", "NumPy"],
-  },
-  {
-    title: "Tools",
-    items: ["Git", "GitHub", "Postman", "Linux", "XAMPP", "Netlify"],
-  },
-  {
-    title: "IT Support & Networking",
+    title: { en: "Programming Languages", es: "Lenguajes de programación" },
     items: [
-      "Troubleshooting HW/SW/Network",
-      "Windows OS Support",
-      "LAN/WAN Fundamentals",
-      "Router & Modem Setup (basic)",
-      "Hardware Installation",
-      "Ticketing",
-      "Documentation",
-      "SQL Backups",
-      "QA",
-      "Bilingual Customer Service (EN/ES)",
+      { label: "Java", icon: "Java" },
+      { label: "JavaScript", icon: "JavaScript" },
+      { label: "Python", icon: "Python" },
+      { label: "PHP", icon: "PHP" },
+      { label: "SQL", icon: "database" },
+      { label: "Visual Basic / VB.NET", icon: ".NET" },
+    ],
+  },
+  {
+    title: { en: "Front-End", es: "Front-End" },
+    items: [
+      { label: "HTML", icon: "HTML" },
+      { label: "CSS", icon: "CSS" },
+      { label: "Astro", icon: "Astro" },
+      { label: "Tailwind CSS", icon: "Tailwind CSS" },
+      { label: "Bootstrap", icon: "Bootstrap" },
+      { label: "WordPress / Elementor", icon: "WordPress" },
+    ],
+  },
+  {
+    title: { en: "Back-End", es: "Back-End" },
+    items: [
+      { label: "Node.js", icon: "Node.js" },
+      { label: "Express", icon: "Express" },
+      { label: "ASP.NET", icon: ".NET" },
+      { label: { en: "Flask (basic)", es: "Flask (básico)" }, icon: "Flask" },
+    ],
+  },
+  {
+    title: { en: "Databases", es: "Bases de datos" },
+    items: [
+      { label: "Microsoft SQL Server", icon: "sqlserver" },
+      { label: "MySQL", icon: "MySQL" },
+    ],
+  },
+  {
+    title: { en: "Desktop & Media", es: "Escritorio y multimedia" },
+    items: [
+      { label: "PySide6 / Qt", icon: "Qt" },
+      { label: "FFmpeg", icon: "FFmpeg" },
+      { label: "OpenCV", icon: "OpenCV" },
+      { label: "NumPy", icon: "NumPy" },
+    ],
+  },
+  {
+    title: { en: "Tools", es: "Herramientas" },
+    items: [
+      { label: "Git", icon: "Git" },
+      { label: "GitHub", icon: "GitHub" },
+      { label: "Postman", icon: "Postman" },
+      { label: "Linux", icon: "Linux" },
+      { label: "XAMPP", icon: "XAMPP" },
+      { label: "Netlify", icon: "Netlify" },
+    ],
+  },
+  {
+    title: { en: "IT Support & Networking", es: "Soporte IT y redes" },
+    items: [
+      { label: { en: "Troubleshooting HW/SW/Network", es: "Diagnóstico de HW/SW/Red" } },
+      { label: { en: "Windows OS Support", es: "Soporte de Windows" } },
+      { label: { en: "LAN/WAN Fundamentals", es: "Fundamentos de LAN/WAN" } },
+      { label: { en: "Router & Modem Setup (basic)", es: "Configuración de routers y módems (básico)" } },
+      { label: { en: "Hardware Installation", es: "Instalación de hardware" } },
+      { label: { en: "Ticketing", es: "Gestión de tickets" } },
+      { label: { en: "Documentation", es: "Documentación" } },
+      { label: { en: "SQL Backups", es: "Respaldos de SQL" } },
+      { label: "QA" },
+      { label: { en: "Bilingual Customer Service (EN/ES)", es: "Servicio al cliente bilingüe (EN/ES)" } },
     ],
     wide: true,
   },
 ];
+
+const labelOf = (skill: Skill) => (typeof skill.label === "string" ? skill.label : skill.label[lang]);
 ---
 
 <div class="grid gap-4 sm:grid-cols-2">
@@ -51,17 +101,31 @@ const GROUPS = [
         data-reveal
         style={`--reveal-delay:${(i % 2) * 80}ms`}
         class:list={[
-          "rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition duration-300 hover:border-violet-400/40 hover:bg-white/[0.05]",
+          "rounded-2xl border border-white/10 bg-white/[0.03] p-4 transition duration-300 hover:border-violet-400/40 hover:bg-white/[0.05] sm:p-5",
           group.wide && "sm:col-span-2",
         ]}
       >
-        <h3 class="mb-3 text-sm font-semibold uppercase tracking-wider text-violet-300">{group.title}</h3>
+        <h3 class="mb-3 text-sm font-semibold uppercase tracking-wider text-violet-300">{group.title[lang]}</h3>
         <ul class="flex flex-wrap gap-2">
-          {group.items.map((item) => (
-            <li class="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-sm text-white/85 transition hover:border-violet-400/40 hover:text-white">
-              {item}
-            </li>
-          ))}
+          {group.items.map((skill) => {
+            const brand = skill.icon ? SKILL_ICONS[skill.icon] : undefined;
+            return (
+              <li class="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-sm text-white/85 transition hover:border-violet-400/40 hover:text-white">
+                {brand && (
+                  <svg
+                    aria-hidden="true"
+                    viewBox={brand.viewBox}
+                    class="size-4 shrink-0"
+                    xmlns="http://www.w3.org/2000/svg"
+                    set:html={brand.svg}
+                  />
+                )}
+                {skill.icon === "sqlserver" && <SqlServerIcon class="size-4 shrink-0 text-[#d13e3d]" />}
+                {skill.icon === "database" && <DatabaseIcon class="size-4 shrink-0 text-violet-300" />}
+                <span>{labelOf(skill)}</span>
+              </li>
+            );
+          })}
         </ul>
       </article>
     ))

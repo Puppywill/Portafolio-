@@ -1,53 +1,104 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro";
+import { getLang, type Localized } from "../i18n/ui";
+
+const lang = getLang(Astro.currentLocale);
+
+interface Job {
+  date: Localized;
+  title: Localized;
+  company: string;
+  highlights: Localized<string[]>;
+  tags: Localized<string[]>;
+  current?: boolean;
+}
 
 // Add `current: true` to highlight the role you currently hold.
 // Education lives in EducationCards.astro so it isn't listed twice.
-const EXPERIENCE = [
+const EXPERIENCE: Job[] = [
   {
-    date: "December 2024 – Present",
-    title: "Help Desk / Database Support",
+    date: { en: "December 2024 – Present", es: "Diciembre 2024 – Presente" },
+    title: { en: "Help Desk / Database Support", es: "Help Desk / Soporte de bases de datos" },
     company: "Solutions by Design (SBD) · Bayamón, PR",
-    highlights: [
-      "Provide on-site and remote technical support to internal users, diagnosing and resolving hardware, software, and connectivity issues.",
-      "Assist with SQL database tasks, including queries, backups, and data validation.",
-      "Perform QA for institutional websites (events, news, galleries), ensuring correct spelling, formatting, and no duplicates, following PRITS documentation standards.",
-      "Document support activities and maintain system accuracy.",
-    ],
-    tags: ["SQL Server", "Backups", "Help Desk", "Networking", "Windows", "QA"],
+    highlights: {
+      en: [
+        "Provide on-site and remote technical support to internal users, diagnosing and resolving hardware, software, and connectivity issues.",
+        "Assist with SQL database tasks, including queries, backups, and data validation.",
+        "Perform QA for institutional websites (events, news, galleries), ensuring correct spelling, formatting, and no duplicates, following PRITS documentation standards.",
+        "Document support activities and maintain system accuracy.",
+      ],
+      es: [
+        "Brindo soporte técnico presencial y remoto a usuarios internos, diagnosticando y resolviendo problemas de hardware, software y conectividad.",
+        "Apoyo en tareas de bases de datos SQL, incluidas consultas, respaldos y validación de datos.",
+        "Realizo QA de sitios web institucionales (eventos, noticias, galerías), asegurando ortografía y formato correctos y sin duplicados, siguiendo los estándares de documentación de PRITS.",
+        "Documento las actividades de soporte y mantengo la precisión de los sistemas.",
+      ],
+    },
+    tags: {
+      en: ["SQL Server", "Backups", "Help Desk", "Networking", "Windows", "QA"],
+      es: ["SQL Server", "Respaldos", "Help Desk", "Redes", "Windows", "QA"],
+    },
     current: true,
   },
   {
-    date: "2022 – Present",
-    title: "Freelance Developer / Personal Projects",
+    date: { en: "2022 – Present", es: "2022 – Presente" },
+    title: { en: "Freelance Developer / Personal Projects", es: "Desarrollador freelance / Proyectos personales" },
     company: "VentaGaming · ServiciosCamuy · LicitadoresProduction",
-    highlights: [
-      "Developed apps with VB.NET + MySQL and SQL Server.",
-      "Created WordPress / Elementor websites.",
-      "Built this personal portfolio with Astro + Tailwind; deployments on Netlify and local XAMPP.",
-    ],
-    tags: ["VB.NET", "MySQL", "SQL Server", "WordPress", "Astro", "Tailwind"],
+    highlights: {
+      en: [
+        "Developed apps with VB.NET + MySQL and SQL Server.",
+        "Created WordPress / Elementor websites.",
+        "Built this personal portfolio with Astro + Tailwind; deployments on Netlify and local XAMPP.",
+      ],
+      es: [
+        "Desarrollé aplicaciones con VB.NET + MySQL y SQL Server.",
+        "Creé sitios web con WordPress / Elementor.",
+        "Construí este portafolio personal con Astro + Tailwind; despliegues en Netlify y XAMPP local.",
+      ],
+    },
+    tags: {
+      en: ["VB.NET", "MySQL", "SQL Server", "WordPress", "Astro", "Tailwind"],
+      es: ["VB.NET", "MySQL", "SQL Server", "WordPress", "Astro", "Tailwind"],
+    },
   },
   {
-    date: "March 2024 – April 2024",
-    title: "Help Desk Intern (University Practice)",
+    date: { en: "March 2024 – April 2024", es: "Marzo 2024 – Abril 2024" },
+    title: { en: "Help Desk Intern (University Practice)", es: "Help Desk – Práctica universitaria" },
     company: "Plavica Auto Glass Center · Cataño, PR",
-    highlights: [
-      "Assisted in implementing a ticketing workflow process and supported customer service system improvements.",
-      "Managed inventory with Visual Basic for Excel.",
-      "Created and processed orders; once confirmed, a transfer button enabled moving stock.",
-      "Color-coded status: green = ready, red = out of stock or not issued.",
-    ],
-    tags: ["Ticketing", "Visual Basic", "Excel", "Inventory"],
+    highlights: {
+      en: [
+        "Assisted in implementing a ticketing workflow process and supported customer service system improvements.",
+        "Managed inventory with Visual Basic for Excel.",
+        "Created and processed orders; once confirmed, a transfer button enabled moving stock.",
+        "Color-coded status: green = ready, red = out of stock or not issued.",
+      ],
+      es: [
+        "Colaboré en la implementación de un flujo de trabajo de tickets y en mejoras al sistema de servicio al cliente.",
+        "Gestioné el inventario con Visual Basic para Excel.",
+        "Creé y procesé órdenes; una vez confirmadas, un botón de transferencia permitía mover el inventario.",
+        "Estados por color: verde = listo, rojo = sin inventario o no emitido.",
+      ],
+    },
+    tags: {
+      en: ["Ticketing", "Visual Basic", "Excel", "Inventory"],
+      es: ["Tickets", "Visual Basic", "Excel", "Inventario"],
+    },
   },
 ];
 ---
 
 <ol class="relative ml-2 border-s border-white/15 md:ml-3">
   {
-    EXPERIENCE.map((experience, i) => (
-      <li class="mb-8 ms-6 last:mb-0 md:ms-8" data-reveal style={`--reveal-delay:${i * 80}ms`}>
-        <ExperienceItem {...experience} />
+    EXPERIENCE.map((job, i) => (
+      <li class="mb-8 ms-5 last:mb-0 sm:ms-6 md:ms-8" data-reveal style={`--reveal-delay:${i * 80}ms`}>
+        <ExperienceItem
+          date={job.date[lang]}
+          title={job.title[lang]}
+          company={job.company}
+          highlights={job.highlights[lang]}
+          tags={job.tags[lang]}
+          current={job.current}
+        />
       </li>
     ))
   }

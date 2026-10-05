@@ -1,0 +1,178 @@
+---
+// The whole home page, shared by "/" (English) and "/es/" (Spanish).
+// The language comes from the route via Astro's i18n routing.
+import Layout from "../layouts/Layout.astro";
+import LinkedInIcon from "./icons/Linked.astro";
+import GithubIcon from "./icons/Github.astro";
+import MailIcon from "./icons/Mail.astro";
+import DownloadIcon from "./icons/Download.astro";
+import Briefcase from "./icons/Briefcase.astro";
+import CodeIcon from "./icons/Code.astro";
+import SchoolIcon from "./icons/School.astro";
+import ToolsIcon from "./icons/Tools.astro";
+import MapPinIcon from "./icons/MapPin.astro";
+import ArrowRightIcon from "./icons/ArrowRight.astro";
+
+import SocialPill from "./SocialPill.astro";
+import SectionContainer from "./SectionContainer.astro";
+import SectionHeading from "./SectionHeading.astro";
+import Experience from "./Experience.astro";
+import Proyects from "./Proyects.astro";
+import EducationCards from "./EducationCards.astro";
+import Skills from "./Skills.astro";
+import Contact from "./Contact.astro";
+import Badge from "./Badge.astro";
+import { CONTACT } from "../data/contact";
+import { getLang, useTranslations } from "../i18n/ui";
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+
+const HIGHLIGHTS = [t("hero.highlight.degree"), t("hero.highlight.cert"), t("hero.highlight.bilingual")];
+---
+
+<Layout title={t("meta.title")} description={t("meta.description")}>
+  <main id="main" class="px-4">
+    <SectionContainer id="top" class="pb-24 pt-16 sm:pt-20 md:pb-32 md:pt-32">
+      <div class="hero-in">
+        <div class="relative mb-6 w-fit">
+          <div aria-hidden="true" class="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-violet-600 via-fuchsia-400 to-indigo-500 opacity-70 blur-md"></div>
+          <img
+            src="/proyects/profile-288.webp"
+            alt="William A. Rosado Pérez"
+            width="128"
+            height="128"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+            class="relative size-28 rounded-full border-2 border-white/20 object-cover md:size-32"
+          />
+        </div>
+
+        <div class="mb-4 flex flex-wrap items-center gap-3">
+          <a
+            href={CONTACT.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={t("a11y.availableBadge")}
+            class="rounded-full"
+          >
+            <Badge />
+          </a>
+          <span class="inline-flex items-center gap-1 text-sm text-white/60">
+            <MapPinIcon class="size-4" /> {t("hero.location")}
+          </span>
+        </div>
+
+        <h1 class="text-balance text-[2rem] font-bold leading-tight tracking-tight text-white min-[375px]:text-4xl md:text-5xl">
+          {t("hero.greeting")}
+        </h1>
+        <p class="mt-3 text-balance bg-gradient-to-r from-violet-300 to-fuchsia-300 bg-clip-text text-xl font-semibold text-transparent md:text-2xl">
+          {t("hero.role")}
+        </p>
+
+        <p class="mt-5 max-w-[680px] text-pretty text-lg leading-relaxed text-white/75 md:text-xl">
+          {t("hero.bio")}
+        </p>
+
+        <ul class="mt-6 flex flex-wrap gap-2" aria-label={t("a11y.highlights")}>
+          {
+            HIGHLIGHTS.map((item) => (
+              <li class="rounded-full border border-violet-400/20 bg-violet-500/10 px-3 py-1 text-sm text-violet-100/90">
+                {item}
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            href="#projects"
+            class="group inline-flex items-center gap-2 rounded-full bg-violet-600 px-5 py-2.5 font-medium text-white shadow-lg shadow-violet-900/40 transition hover:-translate-y-0.5 hover:bg-violet-500"
+          >
+            {t("hero.viewProjects")}
+            <ArrowRightIcon class="size-4 transition-transform group-hover:translate-x-0.5" />
+          </a>
+          <SocialPill href={CONTACT.cv} size="lg">
+            <DownloadIcon class="size-5" />
+            {t("cta.downloadCv")}
+          </SocialPill>
+        </div>
+
+        <nav aria-label={t("a11y.profiles")} class="mt-5 flex flex-wrap gap-3">
+          <SocialPill href={CONTACT.linkedin}>
+            <LinkedInIcon class="size-4 md:size-5" />
+            LinkedIn
+          </SocialPill>
+          <SocialPill href={CONTACT.github}>
+            <GithubIcon class="size-4 md:size-5" />
+            GitHub
+          </SocialPill>
+          <SocialPill href={`mailto:${CONTACT.email}`}>
+            <MailIcon class="size-4 md:size-5" />
+            {t("hero.contactMe")}
+          </SocialPill>
+        </nav>
+      </div>
+    </SectionContainer>
+
+    <SectionContainer id="experience" labelledby="experience-title">
+      <SectionHeading id="experience-title" eyebrow={t("experience.eyebrow")}>
+        <Briefcase slot="icon" />
+        {t("experience.title")}
+      </SectionHeading>
+      <Experience />
+    </SectionContainer>
+
+    <SectionContainer id="projects" labelledby="projects-title">
+      <SectionHeading id="projects-title" eyebrow={t("projects.eyebrow")} subtitle={t("projects.subtitle")}>
+        <CodeIcon slot="icon" />
+        {t("projects.title")}
+      </SectionHeading>
+      <Proyects />
+    </SectionContainer>
+
+    <SectionContainer id="education" labelledby="education-title">
+      <SectionHeading id="education-title" eyebrow={t("education.eyebrow")}>
+        <SchoolIcon slot="icon" />
+        {t("education.title")}
+      </SectionHeading>
+      <EducationCards />
+    </SectionContainer>
+
+    <SectionContainer id="skills" labelledby="skills-title">
+      <SectionHeading id="skills-title" eyebrow={t("skills.eyebrow")}>
+        <ToolsIcon slot="icon" />
+        {t("skills.title")}
+      </SectionHeading>
+      <Skills />
+    </SectionContainer>
+
+    <SectionContainer id="contact" labelledby="contact-title" class="md:pb-24">
+      <Contact />
+    </SectionContainer>
+  </main>
+</Layout>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-in > * {
+      animation: hero-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .hero-in > *:nth-child(2) { animation-delay: 60ms; }
+    .hero-in > *:nth-child(3) { animation-delay: 120ms; }
+    .hero-in > *:nth-child(4) { animation-delay: 180ms; }
+    .hero-in > *:nth-child(5) { animation-delay: 240ms; }
+    .hero-in > *:nth-child(6) { animation-delay: 300ms; }
+    .hero-in > *:nth-child(7) { animation-delay: 360ms; }
+    .hero-in > *:nth-child(8) { animation-delay: 420ms; }
+  }
+
+  @keyframes hero-in {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+  }
+</style>

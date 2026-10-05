@@ -1,38 +1,67 @@
 ---
 import "/src/animacionborderhead/animacionborderhead.css";
+import { getLang, homePath, languages, useTranslations, type Lang } from "../i18n/ui";
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 
 const LINKS = [
-  { label: "Home", target: "top", class: "hidden sm:inline-flex" },
-  { label: "Experience", target: "experience" },
-  { label: "Projects", target: "projects" },
-  { label: "Skills", target: "skills" },
-  { label: "Contact", target: "contact" },
+  { label: t("nav.home"), target: "top", class: "hidden sm:inline-flex" },
+  { label: t("nav.experience"), target: "experience" },
+  { label: t("nav.projects"), target: "projects" },
+  { label: t("nav.skills"), target: "skills", class: "hidden min-[400px]:inline-flex" },
+  { label: t("nav.contact"), target: "contact" },
 ];
+
+const LANGS = Object.keys(languages) as Lang[];
 ---
 
-<header
-  id="site-header"
-  class="sticky top-0 z-50 w-full transition-colors duration-300"
->
-  <div class="mx-auto flex max-w-[1120px] items-center justify-center px-3 py-4 sm:px-4">
+<header id="site-header" class="sticky top-0 z-50 w-full transition-colors duration-300">
+  <div class="mx-auto flex max-w-[1120px] items-center justify-center px-2 py-4 sm:px-4">
     <nav
-      aria-label="Main"
-      class="relative flex items-center gap-0.5 rounded-full border border-white/10 bg-black/40 p-1 shadow-lg shadow-black/20 backdrop-blur-2xl animate-border-animation sm:gap-1"
+      aria-label={t("a11y.mainNav")}
+      class="relative flex max-w-full items-center rounded-full border border-white/10 bg-black/40 p-1 shadow-lg shadow-black/20 backdrop-blur-2xl animate-border-animation"
     >
-      {
-        LINKS.map((link) => (
-          <a
-            href={`/#${link.target}`}
-            data-target={link.target}
-            class:list={[
-              "nav-link inline-flex rounded-full px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 sm:px-4 sm:text-sm",
-              link.class,
-            ]}
-          >
-            {link.label}
-          </a>
-        ))
-      }
+      <div class="flex items-center sm:gap-1">
+        {
+          LINKS.map((link) => (
+            <a
+              href={homePath(lang, `#${link.target}`)}
+              data-target={link.target}
+              class:list={[
+                "nav-link inline-flex h-10 items-center whitespace-nowrap rounded-full px-2.5 text-[13px] font-medium transition-colors duration-200 max-[359px]:px-2 max-[359px]:text-xs sm:h-auto sm:px-4 sm:py-1.5 sm:text-sm",
+                link.class,
+              ]}
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </div>
+
+      <span aria-hidden="true" class="mx-1 h-5 w-px shrink-0 bg-white/15 max-[359px]:mx-0.5 sm:mx-2"></span>
+
+      <div role="group" aria-label={t("a11y.language")} class="flex shrink-0 items-center">
+        {
+          LANGS.map((code) => (
+            <a
+              href={homePath(code)}
+              hreflang={code}
+              lang={code}
+              data-lang-switch={code}
+              aria-current={code === lang ? "true" : undefined}
+              title={languages[code]}
+              class:list={[
+                "inline-flex h-10 items-center rounded-full px-2 text-xs font-semibold uppercase tracking-wide transition-colors duration-200 max-[359px]:px-1.5 sm:h-auto sm:py-1.5",
+                code === lang ? "bg-white/10 text-white" : "text-white/55 hover:text-white",
+              ]}
+            >
+              <span class="sr-only">{languages[code]}</span>
+              <span aria-hidden="true">{code}</span>
+            </a>
+          ))
+        }
+      </div>
     </nav>
   </div>
 </header>
@@ -60,6 +89,20 @@ const LINKS = [
 </style>
 
 <script>
+  // Remember the chosen language and keep the current section when switching
+  document.querySelectorAll<HTMLAnchorElement>("[data-lang-switch]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      try {
+        localStorage.setItem("lang", link.dataset.langSwitch ?? "en");
+      } catch {}
+      if (link.getAttribute("aria-current") === "true") {
+        event.preventDefault();
+        return;
+      }
+      if (location.hash) link.href = link.pathname + location.hash;
+    });
+  });
+
   const header = document.getElementById("site-header");
   const links = Array.from(document.querySelectorAll<HTMLAnchorElement>(".nav-link[data-target]"));
   const sections = links
@@ -82,6 +125,7 @@ const LINKS = [
     const y = window.scrollY;
     header?.classList.toggle("scrolled", y > 8);
 
+    if (!sections.length) return;
     if (y < 150) return setActive("top");
 
     // Bottom of the page: highlight the last section (Contact is short)

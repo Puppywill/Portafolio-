@@ -1,3 +1,9 @@
+---
+import { getLang, useTranslations } from "../i18n/ui";
+
+const t = useTranslations(getLang(Astro.currentLocale));
+---
+
 <span class="relative inline-flex overflow-hidden rounded-full p-px">
   <span
     aria-hidden="true"
@@ -10,6 +16,6 @@
       <span class="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-60"></span>
       <span class="relative inline-flex size-2 rounded-full bg-emerald-400"></span>
     </span>
-    Available To Work
+    {t("hero.available")}
   </span>
 </span>

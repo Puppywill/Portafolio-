@@ -1,11 +1,14 @@
 ---
 import ArrowUp from "./icons/ArrowUp.astro";
+import { getLang, useTranslations } from "../i18n/ui";
+
+const t = useTranslations(getLang(Astro.currentLocale));
 ---
 
 <a
   href="#top"
   id="back-to-top"
-  aria-label="Back to top"
+  aria-label={t("a11y.backToTop")}
   class="fixed bottom-5 right-5 z-40 grid size-11 place-items-center rounded-full border border-white/10 bg-zinc-900/80 text-white shadow-lg shadow-black/30 backdrop-blur transition duration-300 hover:-translate-y-0.5 hover:border-violet-400/60 hover:bg-violet-600/80 sm:bottom-8 sm:right-8"
   data-hidden="true"
 >

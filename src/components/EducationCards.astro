@@ -1,23 +1,55 @@
 ---
 import SchoolIcon from "./icons/School.astro";
 import ShieldIcon from "./icons/Shield.astro";
+import ExternalLinkIcon from "./icons/ExternalLink.astro";
+import SocialPill from "./SocialPill.astro";
+import { getLang, useTranslations, type Localized } from "../i18n/ui";
 
-const EDUCATION = [
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+
+// Official names (institutions, certificate) stay as they are in every language.
+const EDUCATION: {
+  type: Localized;
+  icon: typeof SchoolIcon;
+  title: Localized;
+  school: Localized;
+  date: Localized;
+  description: Localized;
+  /** Official verification page for the credential */
+  credentialUrl?: string;
+}[] = [
   {
-    type: "Degree",
+    type: { en: "Degree", es: "Título" },
     icon: SchoolIcon,
-    title: "Bachelor of Science in Computer Science",
-    school: "Inter American University of Puerto Rico – Bayamón",
-    date: "Aug 2020 – May 2024",
-    description: "Focused on software development, databases, and modern programming practices.",
+    title: {
+      en: "Bachelor of Science in Computer Science",
+      es: "Bachillerato en Ciencias de Computadoras",
+    },
+    school: {
+      en: "Inter American University of Puerto Rico – Bayamón",
+      es: "Universidad Interamericana de Puerto Rico – Recinto de Bayamón",
+    },
+    date: { en: "Aug 2020 – May 2024", es: "Ago 2020 – May 2024" },
+    description: {
+      en: "Focused on software development, databases, and modern programming practices.",
+      es: "Enfocado en desarrollo de software, bases de datos y prácticas modernas de programación.",
+    },
   },
   {
-    type: "Certificate",
+    type: { en: "Certificate", es: "Certificado" },
     icon: ShieldIcon,
-    title: "Google Cybersecurity Professional Certificate",
-    school: "Coursera · Google",
-    date: "2024",
-    description: "Experience with Linux, basic cybersecurity concepts, and risk/threat detection.",
+    title: {
+      en: "Google Cybersecurity Professional Certificate",
+      es: "Google Cybersecurity Professional Certificate",
+    },
+    school: { en: "Coursera · Google", es: "Coursera · Google" },
+    date: { en: "Completed Nov 2024 · 8 courses", es: "Completado nov 2024 · 8 cursos" },
+    description: {
+      en: "Experience with Linux, basic cybersecurity concepts, and risk/threat detection.",
+      es: "Experiencia con Linux, conceptos básicos de ciberseguridad y detección de riesgos y amenazas.",
+    },
+    credentialUrl: "https://www.coursera.org/verify/professional-cert/5W1DU458EVVC",
   },
 ];
 ---
@@ -28,20 +60,28 @@ const EDUCATION = [
       <article
         data-reveal
         style={`--reveal-delay:${i * 90}ms`}
-        class="flex flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition duration-300 hover:-translate-y-1 hover:border-violet-400/40 hover:bg-white/[0.05]"
+        class="flex flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition duration-300 hover:-translate-y-1 hover:border-violet-400/40 hover:bg-white/[0.05] sm:p-6"
       >
         <div class="flex items-center justify-between gap-3">
           <span class="grid size-11 place-items-center rounded-xl border border-violet-400/25 bg-violet-500/10 text-violet-300">
             <edu.icon class="size-6" />
           </span>
           <span class="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs font-medium text-white/70">
-            {edu.type}
+            {edu.type[lang]}
           </span>
         </div>
-        <h3 class="mt-4 text-lg font-semibold leading-snug text-white">{edu.title}</h3>
-        <p class="mt-1 text-sm text-violet-200/90">{edu.school}</p>
-        <p class="mt-0.5 text-sm text-white/50">{edu.date}</p>
-        <p class="mt-3 text-[15px] leading-relaxed text-white/75">{edu.description}</p>
+        <h3 class="mt-4 text-lg font-semibold leading-snug text-white">{edu.title[lang]}</h3>
+        <p class="mt-1 text-sm text-violet-200/90">{edu.school[lang]}</p>
+        <p class="mt-0.5 text-sm text-white/50">{edu.date[lang]}</p>
+        <p class="mt-3 text-[15px] leading-relaxed text-white/75">{edu.description[lang]}</p>
+        {edu.credentialUrl && (
+          <div class="mt-auto pt-5">
+            <SocialPill href={edu.credentialUrl} aria-label={t("education.verifyCertificate")}>
+              <ExternalLinkIcon class="size-4" />
+              {t("education.viewCertificate")}
+            </SocialPill>
+          </div>
+        )}
       </article>
     ))
   }

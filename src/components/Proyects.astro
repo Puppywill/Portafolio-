@@ -24,6 +24,10 @@ import CloseIcon from "./icons/Close.astro";
 import CheckIcon from "./icons/Check.astro";
 import StarIcon from "./icons/Star.astro";
 import SocialPill from "./SocialPill.astro";
+import { getLang, useTranslations, type Localized } from "../i18n/ui";
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 
 const TAGS = {
   Html: { name: "HTML", class: "bg-orange-500/15 text-orange-200 ring-orange-400/30", icon: HtmlIcon },
@@ -49,8 +53,8 @@ type Tag = (typeof TAGS)[keyof typeof TAGS];
 
 interface Project {
   title: string;
-  category: string;
-  description: string;
+  category: Localized;
+  description: Localized;
   github: string;
   /** Optional live demo URL — a "Live Demo" button appears when set */
   demo?: string;
@@ -60,37 +64,54 @@ interface Project {
   width: number;
   height: number;
   tags: Tag[];
-  features?: string[];
+  features?: Localized<string[]>;
   featured?: boolean;
 }
 
 const PROJECTS: Project[] = [
   {
     title: "Puppywill AI Clipper",
-    category: "Windows Desktop App · Video Analysis",
-    description:
-      "A Windows desktop application that analyzes long gaming and IRL stream recordings to automatically detect and rank highlight moments. It combines audio intensity, reactions, visual movement, and scene changes, then exports clean clips in vertical, horizontal, or square formats.",
+    category: {
+      en: "Windows Desktop App · Video Analysis",
+      es: "App de escritorio para Windows · Análisis de video",
+    },
+    description: {
+      en: "A Windows desktop application that analyzes long gaming and IRL stream recordings to automatically detect and rank highlight moments. It combines audio intensity, reactions, visual movement, and scene changes, then exports clean clips in vertical, horizontal, or square formats.",
+      es: "Una aplicación de escritorio para Windows que analiza grabaciones largas de streams de gaming e IRL para detectar y clasificar automáticamente los mejores momentos. Combina la intensidad del audio, las reacciones, el movimiento visual y los cambios de escena, y luego exporta clips limpios en formato vertical, horizontal o cuadrado.",
+    },
     github: "https://github.com/Puppywill/Puppywill-AI-Clipper",
     download: "https://github.com/Puppywill/Puppywill-AI-Clipper/releases/latest",
     image: "/screenshots/puppywill-ai-clipper-app.webp",
     width: 1216,
     height: 1012,
     tags: [TAGS.Python, TAGS.PySide, TAGS.FFmpeg, TAGS.OpenCV, TAGS.NumPy, TAGS.Nvenc],
-    features: [
-      "Ranks every moment with a 0–100 quality score and labels like Kill, Multikill, Best Play, and Reaction",
-      "GPU-accelerated decoding and export (NVDEC / NVENC) with automatic CPU fallback",
-      "Audio and video analyzed in parallel, with real progress, ETA, and cancel at any time",
-      "Preview and fine-tune each clip, then batch-export to 9:16, 16:9, and 1:1",
-      "Result caching and project save/load to resume work later",
-      "Windows installer with FFmpeg bundled · UI in English, Spanish, and Portuguese",
-    ],
+    features: {
+      en: [
+        "Ranks every moment with a 0–100 quality score and labels like Kill, Multikill, Best Play, and Reaction",
+        "GPU-accelerated decoding and export (NVDEC / NVENC) with automatic CPU fallback",
+        "Audio and video analyzed in parallel, with real progress, ETA, and cancel at any time",
+        "Preview and fine-tune each clip, then batch-export to 9:16, 16:9, and 1:1",
+        "Result caching and project save/load to resume work later",
+        "Windows installer with FFmpeg bundled · UI in English, Spanish, and Portuguese",
+      ],
+      es: [
+        "Clasifica cada momento con una puntuación de calidad de 0 a 100 y etiquetas como Kill, Multikill, Best Play y Reaction",
+        "Decodificación y exportación aceleradas por GPU (NVDEC / NVENC) con respaldo automático a CPU",
+        "Audio y video analizados en paralelo, con progreso real, tiempo estimado y opción de cancelar en cualquier momento",
+        "Vista previa y ajuste de cada clip, con exportación por lotes en 9:16, 16:9 y 1:1",
+        "Caché de resultados y guardar/cargar proyectos para retomar el trabajo después",
+        "Instalador para Windows con FFmpeg incluido · Interfaz en inglés, español y portugués",
+      ],
+    },
     featured: true,
   },
   {
     title: "Help Desk Ticket System",
-    category: "Full-Stack Web App",
-    description:
-      "A professional IT Support ticket management system with authentication, role-based access, SQL Server integration, user administration, notifications, forgot password workflow, and PDF/Excel reporting with real support data.",
+    category: { en: "Full-Stack Web App", es: "App web full-stack" },
+    description: {
+      en: "A professional IT Support ticket management system with authentication, role-based access, SQL Server integration, user administration, notifications, forgot password workflow, and PDF/Excel reporting with real support data.",
+      es: "Un sistema profesional de gestión de tickets de soporte IT con autenticación, acceso basado en roles, integración con SQL Server, administración de usuarios, notificaciones, recuperación de contraseña y reportes en PDF/Excel con datos reales de soporte.",
+    },
     github: "https://github.com/Puppywill/helpdesk-ticket-system",
     image: "/screenshots/admin-dashboard.webp",
     width: 1280,
@@ -99,9 +120,11 @@ const PROJECTS: Project[] = [
   },
   {
     title: "VentaGaming",
-    category: "Desktop App · Database",
-    description:
-      "A desktop database project for managing customers and sales records for a gaming products company, including Excel export functionality using Visual Basic, MySQL, and XAMPP.",
+    category: { en: "Desktop App · Database", es: "App de escritorio · Base de datos" },
+    description: {
+      en: "A desktop database project for managing customers and sales records for a gaming products company, including Excel export functionality using Visual Basic, MySQL, and XAMPP.",
+      es: "Un proyecto de escritorio con base de datos para gestionar clientes y registros de ventas de una empresa de productos de gaming, con exportación a Excel, usando Visual Basic, MySQL y XAMPP.",
+    },
     github: "https://github.com/Puppywill/Ventagaming",
     image: "/proyects/venta.webp",
     width: 960,
@@ -110,9 +133,11 @@ const PROJECTS: Project[] = [
   },
   {
     title: "Chill's Restaurant",
-    category: "Web App · Team Project",
-    description:
-      "A collaborative restaurant website built with ASP.NET and Microsoft SQL Server, focused on presenting a dynamic web experience backed by database-driven content.",
+    category: { en: "Web App · Team Project", es: "App web · Proyecto en equipo" },
+    description: {
+      en: "A collaborative restaurant website built with ASP.NET and Microsoft SQL Server, focused on presenting a dynamic web experience backed by database-driven content.",
+      es: "Un sitio web colaborativo para un restaurante, construido con ASP.NET y Microsoft SQL Server, enfocado en ofrecer una experiencia web dinámica con contenido basado en bases de datos.",
+    },
     github: "https://github.com/Puppywill/ChillsRestaurant",
     image: "/proyects/Chills.webp",
     width: 960,
@@ -140,13 +165,13 @@ const others = PROJECTS.filter((p) => !p.featured);
         <button
           type="button"
           data-lightbox={project.image}
-          data-alt={`Screenshot of ${project.title}`}
-          aria-label={`Enlarge screenshot of ${project.title}`}
+          data-alt={`${t("a11y.screenshotOf")} ${project.title}`}
+          aria-label={`${t("a11y.enlargeScreenshot")} ${project.title}`}
           class="relative block w-full cursor-zoom-in overflow-hidden rounded-2xl border border-white/10 bg-black/30 shadow-xl shadow-black/40"
         >
           <img
             src={project.image}
-            alt={`Screenshot of ${project.title}`}
+            alt={`${t("a11y.screenshotOf")} ${project.title}`}
             width={project.width}
             height={project.height}
             loading="lazy"
@@ -154,26 +179,26 @@ const others = PROJECTS.filter((p) => !p.featured);
             class="h-auto w-full transition duration-500 group-hover:scale-[1.015]"
           />
           <span class="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-black/70 px-3 py-1 text-xs text-white/90 backdrop-blur transition md:opacity-0 md:group-hover:opacity-100">
-            <MaximizeIcon class="size-3.5" /> View full size
+            <MaximizeIcon class="size-3.5" /> {t("projects.viewFullSize")}
           </span>
         </button>
 
         <div class="relative mt-6 md:mt-8">
           <div class="flex flex-wrap items-center gap-2">
             <span class="inline-flex items-center gap-1.5 rounded-full border border-violet-300/40 bg-violet-500/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-violet-100">
-              <StarIcon class="size-3.5" /> Featured Project
+              <StarIcon class="size-3.5" /> {t("projects.featured")}
             </span>
-            <span class="text-sm text-white/60">{project.category}</span>
+            <span class="text-sm text-white/60">{project.category[lang]}</span>
           </div>
 
           <h3 class="mt-3 bg-gradient-to-r from-white via-white to-violet-200 bg-clip-text text-3xl font-bold text-transparent md:text-4xl">
             {project.title}
           </h3>
-          <p class="mt-3 text-pretty text-base leading-7 text-white/80 md:text-lg">{project.description}</p>
+          <p class="mt-3 text-pretty text-base leading-7 text-white/80 md:text-lg">{project.description[lang]}</p>
 
           {project.features && (
-            <ul class="mt-6 grid gap-3 md:grid-cols-2" aria-label="Key features">
-              {project.features.map((feature) => (
+            <ul class="mt-6 grid gap-3 md:grid-cols-2" aria-label={t("a11y.keyFeatures")}>
+              {project.features[lang].map((feature) => (
                 <li class="flex gap-x-3 rounded-xl border border-white/10 bg-black/20 p-3 text-sm leading-6 text-white/80">
                   <span class="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-violet-500/20 text-violet-300">
                     <CheckIcon class="size-3.5" />
@@ -184,7 +209,7 @@ const others = PROJECTS.filter((p) => !p.featured);
             </ul>
           )}
 
-          <ul class="mt-6 flex flex-wrap gap-2" aria-label="Technologies">
+          <ul class="mt-6 flex flex-wrap gap-2" aria-label={t("a11y.technologies")}>
             {project.tags.map((tag) => (
               <li class={`inline-flex items-center gap-x-2 rounded-full px-3 py-1.5 text-xs font-semibold ring-1 ${tag.class}`}>
                 <tag.icon class="size-4" />
@@ -197,17 +222,17 @@ const others = PROJECTS.filter((p) => !p.featured);
             {project.download && (
               <SocialPill href={project.download} variant="primary">
                 <WindowsIcon class="size-4 md:size-5" />
-                Download for Windows
+                {t("projects.download")}
               </SocialPill>
             )}
             <SocialPill href={project.github}>
               <GithubIcon class="size-4 md:size-5" />
-              View Code
+              {t("projects.viewCode")}
             </SocialPill>
             {project.demo && (
               <SocialPill href={project.demo}>
                 <ExternalLinkIcon class="size-4 md:size-5" />
-                Live Demo
+                {t("projects.liveDemo")}
               </SocialPill>
             )}
           </div>
@@ -225,13 +250,13 @@ const others = PROJECTS.filter((p) => !p.featured);
         <button
           type="button"
           data-lightbox={project.image}
-          data-alt={`Screenshot of ${project.title}`}
-          aria-label={`Enlarge screenshot of ${project.title}`}
+          data-alt={`${t("a11y.screenshotOf")} ${project.title}`}
+          aria-label={`${t("a11y.enlargeScreenshot")} ${project.title}`}
           class="relative block aspect-[4/3] w-full cursor-zoom-in overflow-hidden rounded-xl border border-white/10 bg-black/30"
         >
           <img
             src={project.image}
-            alt={`Screenshot of ${project.title}`}
+            alt={`${t("a11y.screenshotOf")} ${project.title}`}
             width={project.width}
             height={project.height}
             loading="lazy"
@@ -241,11 +266,11 @@ const others = PROJECTS.filter((p) => !p.featured);
         </button>
 
         <div>
-          <p class="text-xs font-medium uppercase tracking-wider text-violet-300/90">{project.category}</p>
+          <p class="text-xs font-medium uppercase tracking-wider text-violet-300/90">{project.category[lang]}</p>
           <h3 class="mt-1.5 text-2xl font-semibold text-white">{project.title}</h3>
-          <p class="mt-2 text-pretty text-[15px] leading-7 text-white/75">{project.description}</p>
+          <p class="mt-2 text-pretty text-[15px] leading-7 text-white/75">{project.description[lang]}</p>
 
-          <ul class="mt-4 flex flex-wrap gap-2" aria-label="Technologies">
+          <ul class="mt-4 flex flex-wrap gap-2" aria-label={t("a11y.technologies")}>
             {project.tags.map((tag) => (
               <li class={`inline-flex items-center gap-x-1.5 rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ${tag.class}`}>
                 <tag.icon class="size-3.5" />
@@ -257,12 +282,12 @@ const others = PROJECTS.filter((p) => !p.featured);
           <div class="mt-5 flex flex-wrap gap-3">
             <SocialPill href={project.github}>
               <GithubIcon class="size-4 md:size-5" />
-              View Code
+              {t("projects.viewCode")}
             </SocialPill>
             {project.demo && (
               <SocialPill href={project.demo}>
                 <ExternalLinkIcon class="size-4 md:size-5" />
-                Live Demo
+                {t("projects.liveDemo")}
               </SocialPill>
             )}
           </div>
@@ -273,26 +298,26 @@ const others = PROJECTS.filter((p) => !p.featured);
 </div>
 
 <p class="mt-8 text-center text-sm text-white/60" data-reveal>
-  More work on
+  {t("projects.moreOn")}
   <a
     href="https://github.com/Puppywill"
     target="_blank"
     rel="noopener noreferrer"
-    class="font-medium text-violet-300 underline-offset-4 hover:text-violet-200 hover:underline">GitHub ↗</a
+    class="inline-block py-2 font-medium text-violet-300 underline-offset-4 hover:text-violet-200 hover:underline">GitHub ↗</a
   >
 </p>
 
 <dialog
   id="lightbox"
-  aria-label="Project screenshot"
+  aria-label={t("a11y.projectScreenshot")}
   class="m-auto max-h-[92vh] w-[min(1200px,94vw)] overflow-visible bg-transparent p-0 backdrop:bg-black/80 backdrop:backdrop-blur-sm"
 >
   <img id="lightbox-img" src="" alt="" class="max-h-[88vh] w-full rounded-xl border border-white/10 object-contain shadow-2xl" />
   <button
     type="button"
     id="lightbox-close"
-    aria-label="Close"
-    class="absolute -top-3 right-0 grid size-10 -translate-y-full place-items-center rounded-full border border-white/15 bg-zinc-900 text-white hover:bg-violet-600 sm:-right-3 sm:translate-x-full sm:translate-y-0"
+    aria-label={t("a11y.close")}
+    class="absolute right-2 top-2 grid size-11 place-items-center rounded-full border border-white/15 bg-zinc-900/90 text-white hover:bg-violet-600 sm:-right-3 sm:top-0 sm:size-10 sm:translate-x-full"
   >
     <CloseIcon class="size-5" />
   </button>

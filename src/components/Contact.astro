@@ -9,6 +9,9 @@ import SendIcon from "./icons/Send.astro";
 import MapPinIcon from "./icons/MapPin.astro";
 import SocialPill from "./SocialPill.astro";
 import { CONTACT } from "../data/contact";
+import { getLang, useTranslations } from "../i18n/ui";
+
+const t = useTranslations(getLang(Astro.currentLocale));
 ---
 
 <div
@@ -18,31 +21,34 @@ import { CONTACT } from "../data/contact";
   <div aria-hidden="true" class="pointer-events-none absolute -left-20 -top-20 size-64 rounded-full bg-violet-500/20 blur-3xl"></div>
 
   <div class="relative">
-    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-violet-300/90">Contact</p>
-    <h2 id="contact-title" class="mt-2 text-3xl font-bold text-white md:text-4xl">Interested in working together?</h2>
+    <p class="text-xs font-semibold uppercase tracking-[0.18em] text-violet-300/90">{t("contact.eyebrow")}</p>
+    <h2 id="contact-title" class="mt-2 text-3xl font-bold text-white md:text-4xl">{t("contact.title")}</h2>
     <p class="mx-auto mt-3 max-w-[52ch] text-pretty text-white/75">
-      I’m open to collaborations, freelance work, or full-time roles. The fastest way to reach me is by email.
+      {t("contact.text")}
     </p>
 
     <p class="mt-3 inline-flex items-center gap-1.5 text-sm text-white/60">
-      <MapPinIcon class="size-4" /> Based in Bayamón, Puerto Rico
+      <MapPinIcon class="size-4" /> {t("contact.based")}
     </p>
 
     <!-- Email with copy button: works even when no mail app is configured -->
     <div class="mx-auto mt-6 flex w-full max-w-md items-center gap-2 rounded-full border border-white/10 bg-black/30 p-1.5 pl-4">
       <MailIcon class="hidden size-4 shrink-0 text-violet-300 sm:block" />
-      <a href={`mailto:${CONTACT.email}`} class="min-w-0 flex-1 truncate text-left text-sm text-white hover:text-violet-200 sm:text-base">
+      <a href={`mailto:${CONTACT.email}`} class="min-w-0 flex-1 truncate py-2 text-left text-sm text-white hover:text-violet-200 sm:text-base">
         {CONTACT.email}
       </a>
       <button
         type="button"
         id="copy-email"
         data-email={CONTACT.email}
-        class="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-sm font-medium text-white transition hover:bg-white/20"
+        data-label-copy={t("contact.copy")}
+        data-label-copied={t("contact.copied")}
+        data-status={t("a11y.emailCopied")}
+        class="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-white/10 px-3.5 py-2.5 text-sm font-medium text-white transition hover:bg-white/20 sm:py-2"
       >
         <span data-icon="copy"><CopyIcon class="size-4" /></span>
         <span data-icon="check" hidden><CheckIcon class="size-4 text-emerald-300" /></span>
-        <span data-label>Copy</span>
+        <span data-label>{t("contact.copy")}</span>
       </button>
     </div>
     <p id="copy-status" class="sr-only" aria-live="polite"></p>
@@ -50,7 +56,7 @@ import { CONTACT } from "../data/contact";
     <div class="mt-6 flex flex-wrap justify-center gap-3">
       <SocialPill href={`mailto:${CONTACT.email}`} variant="primary">
         <SendIcon class="size-4 md:size-5" />
-        Send me a message
+        {t("contact.send")}
       </SocialPill>
       <SocialPill href={CONTACT.linkedin}>
         <LinkedInIcon class="size-4 md:size-5" />
@@ -62,7 +68,7 @@ import { CONTACT } from "../data/contact";
       </SocialPill>
       <SocialPill href={CONTACT.cv}>
         <DownloadIcon class="size-4 md:size-5" />
-        Download CV
+        {t("cta.downloadCv")}
       </SocialPill>
     </div>
   </div>
@@ -86,13 +92,13 @@ import { CONTACT } from "../data/contact";
       return;
     }
 
-    if (label) label.textContent = "Copied!";
+    if (label) label.textContent = button.dataset.labelCopied ?? "Copied!";
     if (copyIcon) copyIcon.hidden = true;
     if (checkIcon) checkIcon.hidden = false;
-    if (status) status.textContent = "Email address copied to clipboard";
+    if (status) status.textContent = button.dataset.status ?? "";
 
     setTimeout(() => {
-      if (label) label.textContent = "Copy";
+      if (label) label.textContent = button.dataset.labelCopy ?? "Copy";
       if (copyIcon) copyIcon.hidden = false;
       if (checkIcon) checkIcon.hidden = true;
       if (status) status.textContent = "";

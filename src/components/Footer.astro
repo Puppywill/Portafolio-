@@ -3,6 +3,9 @@ import LinkedInIcon from "./icons/Linked.astro";
 import GithubIcon from "./icons/Github.astro";
 import MailIcon from "./icons/Mail.astro";
 import { CONTACT } from "../data/contact";
+import { getLang, useTranslations } from "../i18n/ui";
+
+const t = useTranslations(getLang(Astro.currentLocale));
 
 const year = new Date().getFullYear();
 
@@ -19,10 +22,10 @@ const socials = [
   >
     <div>
       <p class="text-sm text-white/70">© {year} William A. Rosado Pérez</p>
-      <p class="mt-1 text-xs text-white/55">Built with Astro &amp; Tailwind CSS</p>
+      <p class="mt-1 text-xs text-white/55">{t("footer.builtWith")}</p>
     </div>
 
-    <nav aria-label="Social links" class="flex items-center gap-2">
+    <nav aria-label={t("a11y.socialLinks")} class="flex items-center gap-2">
       {
         socials.map((s) => (
           <a
