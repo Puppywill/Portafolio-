@@ -35,6 +35,33 @@ Tecnologías utilizadas:
 
 GitHub: [https://github.com/Puppywill/Puppywill-AI-Clipper](https://github.com/Puppywill/Puppywill-AI-Clipper)
 
+### Service Billing System
+
+![Service Billing System Dashboard](public/screenshots/service-billing-system-dashboard.webp)
+
+Aplicación web interna desarrollada como alternativa a un proceso de facturación de servicios basado en Access. Permite a los técnicos registrar horas de servicio por cliente y proyecto, mientras los administradores gestionan la facturación, generan facturas en PDF y producen reportes de horas de servicio.
+
+Estado: Pendiente de despliegue en producción
+
+Funciones principales:
+
+- Registro de horas de servicio por cliente y proyecto
+- Generación manual de facturas en PDF con IVU opcional de 11.5%
+- Reportes de horas de servicio exportables a PDF y Excel
+- Acceso por roles (Admin, Project Manager, Technician)
+- Base de datos SQL Server
+
+Tecnologías utilizadas:
+
+- HTML
+- CSS
+- JavaScript
+- Node.js
+- Express
+- SQL Server
+
+GitHub: [https://github.com/Puppywill/Service-Billing-System](https://github.com/Puppywill/Service-Billing-System)
+
 ### Help Desk Ticket System
 
 ![Help Desk Ticket System](public/screenshots/admin-dashboard.png)
