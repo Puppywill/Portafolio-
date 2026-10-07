@@ -76,6 +76,7 @@ export const ui = {
     "projects.viewFullSize": "View full size",
     "projects.download": "Download for Windows",
     "projects.viewCode": "View Code",
+    "projects.viewOnGithub": "View on GitHub",
     "projects.liveDemo": "Live Demo",
     "projects.moreOn": "More work on",
 
@@ -160,6 +161,7 @@ export const ui = {
     "projects.viewFullSize": "Ver en tamaño completo",
     "projects.download": "Descargar para Windows",
     "projects.viewCode": "Ver código",
+    "projects.viewOnGithub": "Ver en GitHub",
     "projects.liveDemo": "Demo en vivo",
     "projects.moreOn": "Más proyectos en",
 
